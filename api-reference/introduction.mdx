@@ -1,33 +1,22 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: '介绍'
+description: '介绍 Reportify API 访问方法和身份验证策略'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## 基础信息
 
-## Welcome
+Reportify API 基于 REST 原则构建。我们在每个请求中强制执行 HTTPS，以提高数据安全性、完整性和隐私性。该 API 不支持 HTTP。
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
-
-## Authentication
-
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+所有 API 请求的基础 URL 为：
 ```
+https://api.reportify.cc
+```
+
+## 身份验证
+
+要访问 Reportify 的 API，您需要在请求的 Header 中加入 `Authorization` 头信息，其中包含您的 Bearer Token：
+
+```
+Authorization: Bearer 447460****09c9
+```
+
