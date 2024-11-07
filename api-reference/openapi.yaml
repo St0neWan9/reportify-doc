@@ -124,10 +124,10 @@ paths:
                           type: object
                         metadatas:
                           type: object
-  /v1/search/rag:
+  /v1/search/chunks:
     post:
-      summary: RAG Search
-      description: Perform semantic search on documents based on specified criteria.
+      summary: Search Chunks
+      description: Perform semantic search on document chunks based on specified criteria.
       requestBody:
         required: true
         content:

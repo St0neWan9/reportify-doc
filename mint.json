@@ -40,7 +40,7 @@
           "group": "文档搜索和问答",
           "pages": [
             "api-reference/endpoint/search",
-            "api-reference/endpoint/rag_search",
+            "api-reference/endpoint/search_chunks",
             "api-reference/endpoint/completion"
           ]
         },

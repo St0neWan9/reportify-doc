@@ -1,13 +1,13 @@
 ---
-title: 'RAG Search'
-openapi: 'POST /v1/search/rag'
+title: 'Search Chunks'
+openapi: 'POST /v1/search/chunks'
 ---
 
-## 文档语义搜索
+## 文档块搜索
 
-**URL**: `/v1/search/rag`  
+**URL**: `/v1/search/chunks`  
 **方法**: `POST`  
-**描述**: 根据指定条件进行语义搜索，支持按文档内容或相关字段搜索。
+**描述**: 根据指定条件进行语义搜索文档内容块，通常用于 RAG 场景，支持按文档内容或相关字段搜索。
 
 ### 请求参数
 | 参数名                   | 类型         | 描述                                                                                       |
