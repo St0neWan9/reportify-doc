@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "叠镜使用和开发文档",
+  "name": "Reportify 开发者文档",
   "logo": {
     "dark": "/logo/default.png",
     "light": "/logo/default.png"
