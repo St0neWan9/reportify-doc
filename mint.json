@@ -47,8 +47,8 @@
         {
           "group": "文档内容和总结",
           "pages": [
-            "api-reference/endpoint/content",
-            "api-reference/endpoint/summary"
+            "api-reference/endpoint/contents",
+            "api-reference/endpoint/contents_summary"
           ]
         },
         {
