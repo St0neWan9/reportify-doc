@@ -6,7 +6,7 @@ info:
 paths:
   /v1/search:
     post:
-      summary: Document Search
+      summary: Search
       description: Search for documents based on specified criteria.
       requestBody:
         required: true
@@ -124,7 +124,7 @@ paths:
                           type: object
   /v1/search/rag:
     post:
-      summary: Document Semantic Search
+      summary: RAG Search
       description: Perform semantic search on documents based on specified criteria.
       requestBody:
         required: true
@@ -230,8 +230,8 @@ paths:
                               type: object
   /v1/chat/completion:
     post:
-      summary: Document-Based Q&A
-      description: Provides Q&A based on document content.
+      summary: Completion
+      description: Provides answering based on document content.
       requestBody:
         required: true
         content:
@@ -271,7 +271,7 @@ paths:
                     type: object
   /v1/contents/{doc_id}:
     get:
-      summary: Document Content
+      summary: Contents
       description: Retrieve detailed content of the specified document, including chunks.
       parameters:
         - name: doc_id
@@ -344,7 +344,7 @@ paths:
                         type: object
   /v1/contents/{doc_id}/summary:
     get:
-      summary: Document Summary
+      summary: Contents Summary
       description: Retrieve the summary of the specified document.
       parameters:
         - name: doc_id
@@ -366,7 +366,7 @@ paths:
                     type: string
   /v1/folders/create:
     post:
-      summary: Create Folder
+      summary: Folders
       description: Create a new folder.
       requestBody:
         required: true
@@ -393,7 +393,7 @@ paths:
                     type: string
   /v1/docs/upload:
     post:
-      summary: Upload Document
+      summary: Upload
       description: Synchronously upload a single document to a specified folder.
       requestBody:
         required: true
@@ -432,7 +432,7 @@ paths:
                     type: string
   /v1/docs/upload/batches:
     post:
-      summary: Batch Upload Documents
+      summary: Upload Batches
       description: Synchronously batch upload up to 10 documents to a specified folder.
       requestBody:
         required: true
