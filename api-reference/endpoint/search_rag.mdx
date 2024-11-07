@@ -1,0 +1,192 @@
+---
+title: 'RAG Search'
+openapi: 'POST /v1/search/rag'
+---
+
+## 文档语义搜索
+
+**URL**: `/v1/search/rag`  
+**方法**: `POST`  
+**描述**: 根据指定条件进行语义搜索，支持按文档内容或相关字段搜索。
+
+### 请求参数
+| 参数名                   | 类型         | 描述                                                                                       |
+|--------------------------|--------------|--------------------------------------------------------------------------------------------|
+| query                    | str          | 搜索关键词。                                                                               |
+| doc_ids                  | array[str]   | 指定的文档 ID 列表，如 `["1046915273103380480", "1046522679340961792"]`。                  |
+| categories               | array        | 文档类别（默认不包含 `webpage`），可选值有 `fillings`，`transcripts`，`reports`，`news`，`webpage`。|
+| markets                  | array        | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。                                    |
+| institutions             | array        | 指定机构筛选，如 `Morgan Stanley`，`财联社`。                                               |
+| symbols                  | array        | 股票代码筛选，如 `000001`，`00700`，`AAPL`。                                               |
+| start_date               | str          | 开始日期，格式为 `YYYY-MM-DD`。                                                             |
+| end_date                 | str          | 结束日期，格式为 `YYYY-MM-DD`。                                                             |
+| num                      | int          | 返回的结果数量，默认值为 `10`。                                                             |
+| include_doc_extra_detail | boolean      | 是否包含文档详细信息，默认值为 `false`（只返回文档 `id`，`title`，`url` 字段）。             |
+
+### 响应参数
+| 参数名              | 类型    | 描述                                                   |
+|------------------|-------|------------------------------------------------------|
+| chunks           | array | 内容块数组，每个块包含以下字段：                                     |
+|   id             | str   | 内容块唯一 ID。                                            |
+|   type           | str   | 内容类型，可能的值为 `text`，`table`，`image`，`formula`。         |
+|   media_url      | str   | 内容块的媒体文件链接（如果类型为 `table`，`image`，`formula` 时提供图片链接）。 |
+|   content        | str   | 内容原始文本（适用于 `text` 或 `table` 类型）。                     |
+|   summary        | str   | 解析内容，适用于 `table`，`image`，`formula` 类型。               |
+|   doc            | dict  | 文档信息（当 `include_doc_extra_detail` 为 `true` 时包含以下字段）： |
+|     id           | str   | 文档唯一 ID。                                             |
+|     title        | str   | 文档标题。                                                |
+|     url          | str   | 文档网页链接。                                              |
+|     file_url     | str   | 文档文件链接。                                              |
+|     media_url    | str   | 媒体文件链接。                                              |
+|     institution  | str   | 发布机构。                                                |
+|     author       | str   | 作者。                                                  |
+|     published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                 |
+|     category     | str   | 文档类别。                                                |
+|     type         | str   | 报告类型及类别。                                             |
+|     market       | str   | 市场区域。                                                |
+|     symbol       | str   | 股票代码。                                                |
+|     company_name | str   | 公司名称。                                                |
+|     logo         | str   | 公司 Logo 链接。                                          |
+|     summary      | str   | 文档摘要。                                                |
+|     tags         | dict  | 标签字典，包含以下字段：                                         |
+|       key        | str   | 标签类型（如 `industry`，`company`，`person`，`event`）。       |
+|       value      | array | 标签内容数组。                                              |
+|     metadatas    | dict  | 元数据字典，包含以下字段：                                        |
+|       key        | str   | 元数据类型（如 `period`，`entities`）。                        |
+|       value      | array | 元数据内容数组。                                             |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X POST https://api.reportify.cc/v1/search/rag \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "query": "AI in finance",
+    "doc_ids": ["1046915273103380480", "1046522679340961792"],
+    "categories": ["fillings", "reports"],
+    "markets": ["us"],
+    "institutions": ["Morgan Stanley"],
+    "symbols": ["AAPL"],
+    "start_date": "2023-01-01",
+    "end_date": "2023-12-31",
+    "num": 5,
+    "include_doc_extra_detail": true
+}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/search/rag"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "query": "AI in finance",
+    "doc_ids": ["1046915273103380480", "1046522679340961792"],
+    "categories": ["fillings", "reports"],
+    "markets": ["us"],
+    "institutions": ["Morgan Stanley"],
+    "symbols": ["AAPL"],
+    "start_date": "2023-01-01",
+    "end_date": "2023-12-31",
+    "num": 5,
+    "include_doc_extra_detail": True
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "chunks": [
+    {
+      "id": "448902339012",
+      "type": "text",
+      "media_url": "",
+      "content": "AI in finance is transforming the industry...",
+      "summary": "",
+      "doc": {
+        "id": "1046915273103380480",
+        "title": "AI in Finance Report",
+        "url": "https://reportify.cc/filings/1046895208953942016",
+        "file_url": "https://files.reportify.cc/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+        "media_url": "https://files.reportify.cc/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+        "institution": "Morgan Stanley",
+        "author": "Jane Doe",
+        "published_at": "2023-12-31T00:00:00.000Z",
+        "category": "reports",
+        "type": "research_report_company",
+        "market": "us",
+        "symbol": "AAPL",
+        "company_name": "Apple Inc.",
+        "logo": "https://files.reportify.cc/logo/AAPL.svg",
+        "summary": "This report provides an overview of AI applications in finance...",
+        "tags": {
+          "industry": [
+            "AI",
+            "EV"
+          ],
+          "company": [
+            "Tesla"
+          ]
+        },
+        "metadatas": {
+          "period": "Q4 2023",
+          "entities": [
+            "Tesla Inc.",
+            "TSLA"
+          ]
+        }
+      }
+    },
+    {
+      "id": "448902339013",
+      "type": "table",
+      "media_url": "https://files.reportify.cc/media/production/447460783945158/520072899438150/605401659404358/element/4.jpg",
+      "content": "",
+      "summary": "Financial data for AI companies in 2023",
+      "doc": {
+        "id": "1046915273103380480",
+        "title": "AI in Finance Report",
+        "url": "https://reportify.cc/filings/1046895208953942016",
+        "file_url": "https://files.reportify.cc/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+        "media_url": "https://files.reportify.cc/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+        "institution": "Morgan Stanley",
+        "author": "Jane Doe",
+        "published_at": "2023-12-31T00:00:00.000Z",
+        "category": "reports",
+        "type": "research_report_company",
+        "market": "us",
+        "symbol": "AAPL",
+        "company_name": "Apple Inc.",
+        "logo": "https://files.reportify.cc/logo/AAPL.svg",
+        "summary": "This report provides an overview of AI applications in finance...",
+        "tags": {
+          "industry": [
+            "AI",
+            "EV"
+          ],
+          "company": [
+            "Tesla"
+          ]
+        },
+        "metadatas": {
+          "period": "Q4 2023",
+          "entities": [
+            "Tesla Inc.",
+            "TSLA"
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+

@@ -1,0 +1,156 @@
+---
+title: 'Search'
+openapi: 'POST /v1/search'
+---
+
+## 文档搜索
+
+**URL**: `/v1/search`  
+**方法**: `POST`  
+**描述**: 根据指定条件搜索文档
+
+### 请求参数
+| 参数名         | 类型   | 描述                                                      |
+|----------------|--------|-----------------------------------------------------------|
+| query          | str    | 搜索关键词。                                              |
+| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。            |
+| categories     | array  | 文档类别（默认不包含 `webpage`），可选值有 `fillings`，`transcripts`，`reports`，`news`，`webpage`。 |
+| markets        | array  | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。     |
+| institutions   | array  | 指定机构筛选，如 `Morgan Stanley`，`财联社`。                |
+| symbols        | array  | 股票代码筛选，如 `000001`，`00700`，`AAPL`。                |
+| tags           | array  | 文档标签，如 `AI`，`Chips`。                               |
+| start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
+| end_date       | str    | 结束日期，格式为 `YYYY-MM-DD`。                             |
+| mode           | str    | 搜索模式，支持 `smart`，`semantic`，`keywords`。             |
+| sort           | str    | 排序方式，支持 `smart`，`latest`。                          |
+| page           | int    | 当前页码，默认值为 `1`。                                   |
+| page_num       | int    | 每页显示的条目数，默认值为 `10`。                           |
+
+### 响应参数
+| 参数名            | 类型    | 描述                                                           |
+|----------------|-------|--------------------------------------------------------------|
+| page           | int   | 当前页码。                                                        |
+| page_num       | int   | 每页条目数。                                                       |
+| total_page     | int   | 总页数。                                                         |
+| total_num      | int   | 总条目数。                                                        |
+| docs           | array | 文档数组，每个文档包含以下字段：                                             |
+|   id           | str   | 文档唯一 ID。                                                     |
+|   title        | str   | 文档标题。                                                        |
+|   url          | str   | 文档网页链接。                                                      |
+|   file_url     | str   | 文档文件链接。                                                      |
+|   media_url    | str   | 媒体文件链接（如有）。                                                  |
+|   institution  | str   | 发布机构。                                                        |
+|   author       | str   | 作者。                                                          |
+|   published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
+|   category     | str   | 文档类别（`fillings`, `transcripts`, `reports`, `news`, `webpage`）。 |
+|   type         | str   | 报告类型及类别。                                                     |
+|   market       | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
+|   symbol       | str   | 股票代码。                                                        |
+|   company_name | str   | 公司名称。                                                        |
+|   logo         | str   | 公司 Logo 链接。                                                  |
+|   summary      | str   | 文档摘要。                                                        |
+|   tags         | dict  | 标签数组。                                                        |
+|     key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+|     value      | array | 标签内容数组。                                                      |
+|   metadatas    | dict  | 元数据数组，包含以下字段：                                                |
+|     key        | str   | 元数据类型（如 `period`, `entities`）。                               |
+|     value      | array | 元数据内容数组。                                                     |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X POST https://api.reportify.cc/v1/search \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "query": "Tesla",
+    "language": "english",
+    "categories": ["fillings", "reports"],
+    "markets": ["us"],
+    "institutions": ["Morgan Stanley"],
+    "symbols": ["TSLA"],
+    "tags": ["AI"],
+    "start_date": "2023-12-01",
+    "end_date": "2023-12-31",
+    "mode": "smart",
+    "sort": "latest",
+    "page": 1,
+    "page_num": 10
+}'
+```
+
+**Python**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/search"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "query": "Tesla",
+    "language": "english",
+    "categories": ["fillings", "reports"],
+    "markets": ["us"],
+    "institutions": ["Morgan Stanley"],
+    "symbols": ["TSLA"],
+    "tags": ["AI"],
+    "start_date": "2023-12-01",
+    "end_date": "2023-12-31",
+    "mode": "smart",
+    "sort": "latest",
+    "page": 1,
+    "page_num": 10
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "page": 1,
+  "page_num": 10,
+  "total_page": 5,
+  "total_num": 50,
+  "docs": [
+    {
+      "id": "1046895208953942016",
+      "title": "Tesla Q4 Earnings Report",
+      "url": "https://reportify.cc/filings/1046895208953942016",
+      "file_url": "https://files.reportify.cc/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+      "media_url": "https://files.reportify.cc/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+      "institution": "Morgan Stanley",
+      "author": "Jane Doe",
+      "published_at": "2023-12-31T00:00:00.000Z",
+      "category": "reports",
+      "type": "research_report_company",
+      "market": "us",
+      "symbol": "TSLA",
+      "company_name": "Tesla Inc.",
+      "logo": "https://files.reportify.cc/logo/TSLA.svg",
+      "summary": "This report covers Tesla's earnings in Q4...",
+      "tags": {
+        "industry": [
+          "AI",
+          "EV"
+        ],
+        "company": [
+          "Tesla"
+        ]
+      },
+      "metadatas": {
+        "period": "Q4 2023",
+        "entities": [
+          "Tesla Inc.",
+          "TSLA"
+        ]
+      }
+    }
+  ]
+}
+```
+

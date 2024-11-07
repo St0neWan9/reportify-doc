@@ -1,0 +1,75 @@
+---
+title: 'Completion'
+openapi: 'POST /v1/chat/completion'
+---
+
+## 文档问答
+
+**URL**: `/v1/chat/completion`  
+**方法**: `POST`  
+**描述**: 提供基于文档内容的问答服务。
+
+### 请求参数
+
+| 参数名       | 类型         | 描述                                    |
+|--------------|--------------|-----------------------------------------|
+| query        | str          | 问题或查询内容。                        |
+| doc_ids      | array[str]   | 指定文档 ID 列表，可选，默认为空数组。   |
+| mode         | str          | 响应模式，支持 `concise`, `research`, `agent`。 |
+| session_id   | str          | 会话 ID，用于跟踪问答上下文。            |
+| stream       | bool         | 是否使用流式传输响应，默认值为 `true`。  |
+
+### 响应参数
+| 参数名      | 类型 | 描述                    |
+|-------------|------|-------------------------|
+| type        | str  | 响应的类型。            |
+| message_id  | str  | 消息唯一 ID。           |
+| message     | str  | 问答内容。              |
+| extra       | dict | 额外信息。              |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X POST https://api.reportify.cc/v1/chat/completion \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "query": "What are the latest trends in AI?",
+    "doc_ids": ["1046895208953942016"],
+    "mode": "research",
+    "session_id": "session123",
+    "stream": true
+}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/chat/completion"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "query": "What are the latest trends in AI?",
+    "doc_ids": ["1046895208953942016"],
+    "mode": "research",
+    "session_id": "session123",
+    "stream": True
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "type": "answer",
+  "message_id": "msg_12345",
+  "message": "AI is advancing rapidly in finance, healthcare, and robotics, with new applications in predictive analytics and automation.",
+  "extra": {}
+}
+```

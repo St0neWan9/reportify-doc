@@ -1,71 +1,56 @@
 ---
-title: Introduction
-description: 'Welcome to the home of your new documentation'
+title: 介绍
+description: '欢迎使用 Reportify 开发者文档'
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+##  Reportify 是什么
 
-## Setting up
+Reportify 是一款基于 AI 大模型的投资研究深度内容问答引擎，可以方便的对沪深、港股、美股上市公司财报、电话会议、调研纪要、研报和新闻进行问答、总结、浏览、翻译。
 
-The first step to world-class documentation is setting up your editing environments.
+使用方式：
+浏览器直接访问 https://reportify.cc  
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+Reportify 亮点功能：
+* 支持沪深、港股、美股全市场财报、电话会议、研报、新闻内容聚合
+* 支持用户自定义上传文本、音频、视频文件进行存储、分析
+* 综合问答，可以针对全站内容和全网内容进行检索而且可以直接给出相应答案，并且带有引用出处
+* 针对各种文档自动进行总结快速浏览文档核心内容和关键要点
+* 每一个总结和关键要点都有引用出处并且对原文内容进行高亮，方便回溯原文
+* 支持财报、电话会、新闻超长文档全文中英文对照翻译，以及选中文本定向翻译
+* 支持历史问答会话保存，方便回溯和分享，构建投资研究知识库
+* 支持用户自定义上传各种类型文档，方便构建私有知识库
 
-## Make it yours
+## 快速开始
 
-Update your docs to your brand and add valuable content for the best user conversion.
+通过以下链接浏览系统使用手册快速了解 Reportify API 的使用方法：
 
 <CardGroup cols={2}>
   <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
+    title="基础信息"
+    icon="user"
+    href="/api-reference/introduction"
   >
-    Customize your docs to your company's colors and brands
+    基础信息和用户认证方法
   </Card>
   <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
+    title="文档搜索和问答"
+    icon="magnifying-glass"
+    href="/api-reference/search-and-answer"
   >
-    Automatically generate endpoints from an OpenAPI spec
+    通过语义搜索和问答，快速定位特定领域或事件的关键信息，支持精准决策
   </Card>
   <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
+    title="文档内容和总结"
+    icon="list"
+    href="/api-reference/document-and-summary"
   >
-    Build interactive features and designs to guide your users
+    利用文档内容与总结功能，为研究员、分析师提供简洁、直接的文档摘要，提升工作效率
   </Card>
   <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
+    title="文件管理"
+    icon="upload"
+    href="/api-reference/folds-and-upload"
   >
-    Check out our showcase of our favorite documentation
+    支持用户自定义上传各种类型文档，方便构建私有知识库
   </Card>
 </CardGroup>
