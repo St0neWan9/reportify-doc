@@ -1,0 +1,59 @@
+---
+title: 'Folders'
+openapi: 'POST /v1/folders/create'
+---
+
+## 创建文件夹
+
+**URL**: `/v1/folders/create`  
+**方法**: `POST`  
+**描述**: 创建一个新的文件夹。
+
+### 请求参数
+| 参数名 | 类型 | 描述       |
+|--------|------|------------|
+| name   | str  | 文件夹名称 |
+
+### 响应参数
+| 参数名 | 类型 | 描述         |
+|--------|------|--------------|
+| id     | str  | 文件夹唯一 ID |
+| name   | str  | 文件夹名称    |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X POST https://api.reportify.cc/v1/folders/create \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "name": "AI Reports"
+}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/folders/create"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "name": "AI Reports"
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "id": "folder_12345",
+  "name": "AI Reports"
+}
+```
+

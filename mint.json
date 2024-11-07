@@ -43,6 +43,21 @@
             "api-reference/endpoint/search_rag",
             "api-reference/endpoint/completion"
           ]
+        },
+        {
+          "group": "文档内容和总结",
+          "pages": [
+            "api-reference/endpoint/content",
+            "api-reference/endpoint/summary"
+          ]
+        },
+        {
+          "group": "文件管理",
+          "pages": [
+            "api-reference/endpoint/folds",
+            "api-reference/endpoint/upload",
+            "api-reference/endpoint/upload_batches"
+          ]
         }    
       ]
     }    

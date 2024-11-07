@@ -1,0 +1,51 @@
+---
+title: 'Contents Summary'
+openapi: 'POST /v1/contents/{doc_id}/summary'
+---
+
+## 文档总结
+
+**URL**: `/v1/contents/{doc_id}/summary`  
+**方法**: `GET`  
+**描述**: 获取指定文档的总结结果。
+
+### 请求参数
+| 参数名 | 类型 | 描述          |
+|--------|------|---------------|
+| doc_id | str  | 文档唯一 ID。 |
+
+### 响应参数
+| 参数名    | 类型 | 描述              |
+|-----------|------|-------------------|
+| doc_id    | str  | 请求的文档唯一 ID |
+| summary   | str  | 文档的总结内容    |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X GET https://api.reportify.cc/v1/contents/1046895208953942016/summary \
+-H "Authorization: Bearer 447460****09c9"
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/contents/1046895208953942016/summary"
+headers = {
+    "Authorization": "Bearer 447460****09c9"
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "doc_id": "1046895208953942016",
+  "summary": "This report provides a concise overview of AI applications in the finance sector, highlighting recent advancements and market impacts."
+}
+```
+
