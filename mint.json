@@ -40,7 +40,7 @@
           "group": "文档搜索和问答",
           "pages": [
             "api-reference/endpoint/search",
-            "api-reference/endpoint/search_rag",
+            "api-reference/endpoint/rag_search",
             "api-reference/endpoint/completion"
           ]
         },
@@ -69,7 +69,7 @@
           "group": "文档搜索和问答",
           "pages": [
             "api-reference/openapi/search",
-            "api-reference/openapi/search_rag",
+            "api-reference/openapi/rag_search",
             "api-reference/openapi/completion"
           ]
         },
