@@ -60,6 +60,36 @@
           ]
         }    
       ]
+    },
+    {
+      "group": "OpenAPI",
+      "pages": [
+        "api-reference/introduction",
+        {
+          "group": "文档搜索和问答",
+          "pages": [
+            "api-reference/openapi/search",
+            "api-reference/openapi/search_rag",
+            "api-reference/openapi/completion"
+          ]
+        },
+        {
+          "group": "文档内容和总结",
+          "pages": [
+            "api-reference/openapi/contents",
+            "api-reference/openapi/contents_summary"
+          ]
+        },
+        {
+          "group": "文件管理",
+          "pages": [
+            "api-reference/openapi/folds",
+            "api-reference/openapi/upload",
+            "api-reference/openapi/upload_batches"
+          ]
+        }    
+      ]
     }    
-  ]
+  ],
+  "openapi": ["/api-reference/openapi.json"]
 }
