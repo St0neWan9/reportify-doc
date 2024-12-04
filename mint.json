@@ -45,20 +45,19 @@
           ]
         },
         {
-          "group": "文档内容和总结",
+          "group": "文档列表",
           "pages": [
-            "api-reference/endpoint/contents",
-            "api-reference/endpoint/contents_summary"
+            "api-reference/endpoint/docs_tag",
+            "api-reference/endpoint/docs_symbol"
           ]
         },
         {
-          "group": "文件管理",
+          "group": "文档内容",
           "pages": [
-            "api-reference/endpoint/folds",
-            "api-reference/endpoint/upload",
-            "api-reference/endpoint/upload_batches"
+            "api-reference/endpoint/docs_doc",
+            "api-reference/endpoint/docs_summary"
           ]
-        }    
+        }
       ]
     }
   ],
