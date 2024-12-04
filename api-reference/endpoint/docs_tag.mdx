@@ -14,6 +14,12 @@ openapi: 'GET /v1/docs/tag/{tag}'
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
 | tag       | str          | 标签，例如 `AI`。                                    |
+| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
+| categories     | array  | 文档类别（默认不包含 `webpage`），可选值有 `filings`，`transcripts`，`reports`，`news`，`webpage`。 |
+| start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
+| end_date       | str    | 结束日期，格式为 `YYYY-MM-DD`。                             |
+| page           | int    | 当前页码，默认值为 `1`。                                   |
+| page_num       | int    | 每页显示的条目数，默认值为 `10`。                           |
 
 ### 响应参数
 | 参数名            | 类型    | 描述                                                           |
