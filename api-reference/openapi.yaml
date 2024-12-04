@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Reportify API
   version: 1.0.0
@@ -8,482 +8,762 @@ servers:
 paths:
   /v1/search:
     post:
-      summary: Search
+      tags:
+        - openapi
+      summary: Search Docs
       description: Search for documents based on specified criteria.
+      operationId: search_docs_v1_search_post
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                query:
-                  type: string
-                  description: Search keywords.
-                language:
-                  type: string
-                  enum: [all, chinese, english]
-                categories:
-                  type: array
-                  items:
-                    type: string
-                  description: Document categories.
-                markets:
-                  type: array
-                  items:
-                    type: string
-                  description: Market regions.
-                institutions:
-                  type: array
-                  items:
-                    type: string
-                  description: Institutions to filter.
-                symbols:
-                  type: array
-                  items:
-                    type: string
-                  description: Stock codes to filter.
-                tags:
-                  type: array
-                  items:
-                    type: string
-                  description: Document tags.
-                start_date:
-                  type: string
-                  format: date
-                end_date:
-                  type: string
-                  format: date
-                mode:
-                  type: string
-                  enum: [smart, semantic, keywords]
-                sort:
-                  type: string
-                  enum: [smart, latest]
-                page:
-                  type: integer
-                  default: 1
-                page_num:
-                  type: integer
-                  default: 10
-              required:
-                - query
+              $ref: '#/components/schemas/OAISearchDocsRequest'
+        required: true
       responses:
         '200':
-          description: Successful search
+          description: Successful Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  page:
-                    type: integer
-                  page_num:
-                    type: integer
-                  total_page:
-                    type: integer
-                  total_num:
-                    type: integer
-                  docs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
-                        url:
-                          type: string
-                        file_url:
-                          type: string
-                        media_url:
-                          type: string
-                        institution:
-                          type: string
-                        author:
-                          type: string
-                        published_at:
-                          type: string
-                          format: date-time
-                        category:
-                          type: string
-                        type:
-                          type: string
-                        market:
-                          type: string
-                        symbol:
-                          type: string
-                        company_name:
-                          type: string
-                        logo:
-                          type: string
-                        summary:
-                          type: string
-                        tags:
-                          type: object
-                        metadatas:
-                          type: object
+                $ref: '#/components/schemas/OAISearchDocsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
   /v1/search/chunks:
     post:
+      tags:
+        - openapi
       summary: Search Chunks
       description: Perform semantic search on document chunks based on specified criteria.
+      operationId: search_chunks_v1_search_chunks_post
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                query:
-                  type: string
-                doc_ids:
-                  type: array
-                  items:
-                    type: string
-                categories:
-                  type: array
-                  items:
-                    type: string
-                markets:
-                  type: array
-                  items:
-                    type: string
-                institutions:
-                  type: array
-                  items:
-                    type: string
-                symbols:
-                  type: array
-                  items:
-                    type: string
-                start_date:
-                  type: string
-                  format: date
-                end_date:
-                  type: string
-                  format: date
-                num:
-                  type: integer
-                  default: 10
-                include_doc_extra_detail:
-                  type: boolean
-                  default: false
+              $ref: '#/components/schemas/OAISearchChunksRequest'
+        required: true
       responses:
         '200':
-          description: Successful semantic search
+          description: Successful Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  chunks:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        type:
-                          type: string
-                        media_url:
-                          type: string
-                        content:
-                          type: string
-                        summary:
-                          type: string
-                        doc:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                            title:
-                              type: string
-                            url:
-                              type: string
-                            file_url:
-                              type: string
-                            media_url:
-                              type: string
-                            institution:
-                              type: string
-                            author:
-                              type: string
-                            published_at:
-                              type: string
-                              format: date-time
-                            category:
-                              type: string
-                            type:
-                              type: string
-                            market:
-                              type: string
-                            symbol:
-                              type: string
-                            company_name:
-                              type: string
-                            logo:
-                              type: string
-                            summary:
-                              type: string
-                            tags:
-                              type: object
-                            metadatas:
-                              type: object
+                $ref: '#/components/schemas/OAISearchChunksResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
   /v1/chat/completion:
     post:
-      summary: Completion
+      tags:
+        - openapi
+      summary: Chat Completion
       description: Provides answering based on document content.
+      operationId: chat_completion_v1_chat_completion_post
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                query:
-                  type: string
-                doc_ids:
-                  type: array
-                  items:
-                    type: string
-                mode:
-                  type: string
-                  enum: [concise, research, agent]
-                session_id:
-                  type: string
-                stream:
-                  type: boolean
-                  default: true
+              $ref: '#/components/schemas/OAIChatCompletionRequest'
+        required: true
       responses:
         '200':
-          description: Successful Q&A response
+          description: Successful Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  message_id:
-                    type: string
-                  message:
-                    type: string
-                  extra:
-                    type: object
-  /v1/contents/{doc_id}:
+                $ref: '#/components/schemas/OAIChatCompletionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
+  /v1/docs/symbol/{symbol}:
     get:
-      summary: Contents
+      tags:
+        - openapi
+      summary: Get Docs By Symbol
+      description: Retrieve docs for the specified symbol
+      operationId: get_docs_by_symbol_v1_docs_symbol__symbol__get
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Symbol
+          name: symbol
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
+  /v1/docs/tag/{tag}:
+    get:
+      tags:
+        - openapi
+      summary: Get Docs By Tag
+      description: Retrieve docs for the specified tag
+      operationId: get_docs_by_tag_v1_docs_tag__tag__get
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Tag
+          name: tag
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
+  /v1/docs/{doc_id}:
+    get:
+      tags:
+        - openapi
+      summary: Get Doc Contents
       description: Retrieve detailed content of the specified document, including chunks.
+      operationId: get_doc_contents_v1_docs__doc_id__get
       parameters:
-        - name: doc_id
-          in: path
-          required: true
+        - required: true
           schema:
             type: string
+            title: Doc Id
+          name: doc_id
+          in: path
       responses:
         '200':
-          description: Document content retrieved
+          description: Successful Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  doc:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      url:
-                        type: string
-                      file_url:
-                        type: string
-                      media_url:
-                        type: string
-                      institution:
-                        type: string
-                      author:
-                        type: string
-                      published_date:
-                        type: string
-                        format: date
-                      category:
-                        type: string
-                      type:
-                        type: string
-                      market:
-                        type: string
-                      symbol:
-                        type: string
-                      company_name:
-                        type: string
-                      logo:
-                        type: string
-                      summary:
-                        type: string
-                      chunks:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                            media_url:
-                              type: string
-                            content:
-                              type: string
-                            summary:
-                              type: string
-                            tags:
-                              type: object
-                            metadatas:
-                              type: object
-                      tags:
-                        type: object
-                      metadatas:
-                        type: object
-  /v1/contents/{doc_id}/summary:
+                $ref: '#/components/schemas/OAIDocContentsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
+  /v1/docs/{doc_id}/summary:
     get:
-      summary: Contents Summary
+      tags:
+        - openapi
+      summary: Get Doc Summary
       description: Retrieve the summary of the specified document.
+      operationId: get_doc_summary_v1_docs__doc_id__summary_get
       parameters:
-        - name: doc_id
-          in: path
-          required: true
+        - required: true
           schema:
             type: string
+            title: Doc Id
+          name: doc_id
+          in: path
       responses:
         '200':
-          description: Document summary retrieved
+          description: Successful Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  doc_id:
-                    type: string
-                  summary:
-                    type: string
-  /v1/folders/create:
-    post:
-      summary: Folders
-      description: Create a new folder.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-                - name
-      responses:
-        '200':
-          description: Folder created
+                $ref: '#/components/schemas/OAIDocSummaryResponse'
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-  /v1/docs/upload:
-    post:
-      summary: Upload
-      description: Synchronously upload a single document to a specified folder.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                folder_id:
-                  type: string
-                name:
-                  type: string
-                path:
-                  type: string
-                metadatas:
-                  type: object
-                  additionalProperties:
-                    type: array
-                    items:
-                      type: string
-              required:
-                - folder_id
-                - name
-                - path
-      responses:
-        '200':
-          description: Document uploaded
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  title:
-                    type: string
-  /v1/docs/upload/batches:
-    post:
-      summary: Upload Batches
-      description: Synchronously batch upload up to 10 documents to a specified folder.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                folder_id:
-                  type: string
-                docs:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      path:
-                        type: string
-                      metadatas:
-                        type: object
-                        additionalProperties:
-                          type: array
-                          items:
-                            type: string
-                    required:
-                      - name
-                      - path
-              required:
-                - folder_id
-                - docs
-      responses:
-        '200':
-          description: Batch documents uploaded
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  docs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - HTTPBearer: []
+
 components:
+  schemas:
+    OAIChatCompletionRequest:
+      properties:
+        query:
+          type: string
+          title: Query
+        doc_ids:
+          items:
+            type: string
+          type: array
+          title: Doc Ids
+          default: []
+        mode:
+          allOf:
+            - $ref: '#/components/schemas/OAIChatMode'
+          default: concise
+        session_id:
+          type: string
+          title: Session Id
+          default: ''
+        stream:
+          type: boolean
+          title: Stream
+          default: true
+      type: object
+      required:
+        - query
+      title: OAIChatCompletionRequest
+    OAIChatCompletionResponse:
+      properties:
+        type:
+          type: string
+          title: Type
+        message_id:
+          type: string
+          title: Message Id
+        message:
+          type: string
+          title: Message
+        extra:
+          type: object
+          title: Extra
+          default: {}
+      type: object
+      required:
+        - type
+        - message_id
+        - message
+      title: OAIChatCompletionResponse
+    OAIChatMode:
+      type: string
+      enum:
+        - concise
+        - comprehensive
+        - detailed
+      title: OAIChatMode
+      description: An enumeration.
+    OAIChunk:
+      properties:
+        type:
+          $ref: '#/components/schemas/OAIChunkType'
+        media_url:
+          type: string
+          title: Media Url
+        content:
+          type: string
+          title: Content
+        summary:
+          type: string
+          title: Summary
+      type: object
+      title: OAIChunk
+    OAIChunkType:
+      type: string
+      enum:
+        - text
+        - table
+        - image
+        - formula
+      title: OAIChunkType
+      description: An enumeration.
+    OAIChunkWithDoc:
+      properties:
+        type:
+          $ref: '#/components/schemas/OAIChunkType'
+        media_url:
+          type: string
+          title: Media Url
+        content:
+          type: string
+          title: Content
+        summary:
+          type: string
+          title: Summary
+        doc:
+          anyOf:
+            - $ref: '#/components/schemas/OAIDocBase'
+            - $ref: '#/components/schemas/OAIDoc'
+          title: Doc
+      type: object
+      title: OAIChunkWithDoc
+    OAIDoc:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        title:
+          type: string
+          title: Title
+        url:
+          type: string
+          title: Url
+        file_url:
+          type: string
+          title: File Url
+        media_url:
+          type: string
+          title: Media Url
+        institution:
+          type: string
+          title: Institution
+        author:
+          type: string
+          title: Author
+        published_at:
+          type: integer
+          title: Published At
+        category:
+          $ref: '#/components/schemas/OAIDocCategory'
+        market:
+          $ref: '#/components/schemas/OAIMarket'
+        symbol:
+          type: string
+          title: Symbol
+        company_name:
+          type: string
+          title: Company Name
+        logo:
+          type: string
+          title: Logo
+        tags:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Tags
+        metadatas:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Metadatas
+      type: object
+      required:
+        - doc_id
+        - title
+        - url
+        - file_url
+        - published_at
+      title: OAIDoc
+    OAIDocBase:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        title:
+          type: string
+          title: Title
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+        - doc_id
+        - title
+        - url
+      title: OAIDocBase
+    OAIDocCategory:
+      type: string
+      enum:
+        - fillings
+        - transcripts
+        - reports
+        - news
+        - webpage
+      title: OAIDocCategory
+      description: An enumeration.
+    OAIDocContentsResponse:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        title:
+          type: string
+          title: Title
+        url:
+          type: string
+          title: Url
+        file_url:
+          type: string
+          title: File Url
+        media_url:
+          type: string
+          title: Media Url
+        institution:
+          type: string
+          title: Institution
+        author:
+          type: string
+          title: Author
+        published_at:
+          type: integer
+          title: Published At
+        category:
+          $ref: '#/components/schemas/OAIDocCategory'
+        market:
+          $ref: '#/components/schemas/OAIMarket'
+        symbol:
+          type: string
+          title: Symbol
+        company_name:
+          type: string
+          title: Company Name
+        logo:
+          type: string
+          title: Logo
+        tags:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Tags
+        metadatas:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Metadatas
+        chunks:
+          items:
+            $ref: '#/components/schemas/OAIChunk'
+          type: array
+          title: Chunks
+      type: object
+      required:
+        - doc_id
+        - title
+        - url
+        - file_url
+        - published_at
+      title: OAIDocContentsResponse
+    OAIDocSummaryResponse:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        summary:
+          type: string
+          title: Summary
+      type: object
+      required:
+        - doc_id
+        - summary
+      title: OAIDocSummaryResponse
+    OAIDocsResponse:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          default: 0
+        total_page:
+          type: integer
+          title: Total Page
+          default: 0
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIDoc'
+          type: array
+          title: Docs
+          default: []
+      type: object
+      title: OAIDocsResponse
+    OAIMarket:
+      type: string
+      enum:
+        - cn
+        - hk
+        - us
+      title: OAIMarket
+      description: An enumeration.
+    OAISearchChunksRequest:
+      properties:
+        query:
+          type: string
+          title: Query
+        doc_ids:
+          items:
+            type: string
+          type: array
+          title: Doc Ids
+          default: []
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          default:
+            - fillings
+            - transcripts
+            - reports
+            - news
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+          default: []
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        num:
+          type: integer
+          title: Num
+          default: 10
+        include_doc_extra_details:
+          type: boolean
+          title: Include Doc Extra Details
+          default: false
+      type: object
+      required:
+        - query
+      title: OAISearchChunksRequest
+    OAISearchChunksResponse:
+      properties:
+        chunks:
+          items:
+            $ref: '#/components/schemas/OAIChunkWithDoc'
+          type: array
+          title: Chunks
+          default: []
+      type: object
+      title: OAISearchChunksResponse
+    OAISearchDocsRequest:
+      properties:
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        query:
+          type: string
+          title: Query
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          default:
+            - fillings
+            - transcripts
+            - reports
+            - news
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          default:
+            - cn
+            - hk
+            - us
+        institutions:
+          items:
+            type: string
+          type: array
+          title: Institutions
+          default: []
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+          default: []
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+          default: []
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        mode:
+          allOf:
+            - $ref: '#/components/schemas/OAISearchMode'
+          default: smart
+        sort:
+          allOf:
+            - $ref: '#/components/schemas/OAISearchSort'
+          default: smart
+      type: object
+      required:
+        - query
+      title: OAISearchDocsRequest
+    OAISearchDocsResponse:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          default: 0
+        total_page:
+          type: integer
+          title: Total Page
+          default: 0
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIDoc'
+          type: array
+          title: Docs
+          default: []
+      type: object
+      title: OAISearchDocsResponse
+    OAISearchMode:
+      type: string
+      enum:
+        - smart
+        - semantic
+        - keywords
+      title: OAISearchMode
+      description: An enumeration.
+    OAISearchSort:
+      type: string
+      enum:
+        - smart
+        - latest
+      title: OAISearchSort
+      description: An enumeration.
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+          title: Code
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+        - code
+        - message
+      title: ErrorResponse      
   securitySchemes:
     BearerAuth:
       type: http
