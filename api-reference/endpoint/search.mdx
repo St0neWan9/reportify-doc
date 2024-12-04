@@ -13,7 +13,7 @@ openapi: 'POST /v1/search'
 | 参数名         | 类型   | 描述                                                      |
 |----------------|--------|-----------------------------------------------------------|
 | query          | str    | 搜索关键词。                                              |
-| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。            |
+| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
 | categories     | array  | 文档类别（默认不包含 `webpage`），可选值有 `fillings`，`transcripts`，`reports`，`news`，`webpage`。 |
 | markets        | array  | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。     |
 | institutions   | array  | 指定机构筛选，如 `Morgan Stanley`，`财联社`。                |
@@ -48,7 +48,7 @@ openapi: 'POST /v1/search'
 |   symbol       | str   | 股票代码。                                                        |
 |   company_name | str   | 公司名称。                                                        |
 |   logo         | str   | 公司 Logo 链接。                                                  |
-|   summary      | str   | 文档摘要。                                                        |
+|   summary      | str   | 文档摘要。*暂未支持*                                                        |
 |   tags         | dict  | 标签数组。                                                        |
 |     key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
 |     value      | array | 标签内容数组。                                                      |

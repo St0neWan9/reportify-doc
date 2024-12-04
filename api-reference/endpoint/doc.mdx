@@ -51,7 +51,8 @@ openapi: 'GET /v1/docs/{doc_id}'
 **cURL**
 ```bash
 curl -X GET https://api.reportify.cc/v1/docs/1046895208953942016 \
--H "Authorization: Bearer 447460****09c9"
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json"
 ```
 
 **Python 示例**
@@ -60,7 +61,8 @@ import requests
 
 url = "https://api.reportify.cc/v1/docs/1046895208953942016"
 headers = {
-    "Authorization": "Bearer 447460****09c9"
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
 }
 
 response = requests.get(url, headers=headers)

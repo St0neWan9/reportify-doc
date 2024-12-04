@@ -15,8 +15,8 @@ openapi: 'POST /v1/search/chunks'
 | query                    | str          | 搜索关键词。                                                                               |
 | doc_ids                  | array[str]   | 指定的文档 ID 列表，如 `["1046915273103380480", "1046522679340961792"]`。                  |
 | categories               | array        | 文档类别（默认不包含 `webpage`），可选值有 `fillings`，`transcripts`，`reports`，`news`，`webpage`。|
-| markets                  | array        | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。                                    |
-| institutions             | array        | 指定机构筛选，如 `Morgan Stanley`，`财联社`。                                               |
+| markets                  | array        | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。*暂未支持*                                    |
+| institutions             | array        | 指定机构筛选，如 `Morgan Stanley`，`财联社`。*暂未支持*                                               |
 | symbols                  | array        | 股票代码筛选，如 `000001`，`00700`，`AAPL`。                                               |
 | start_date               | str          | 开始日期，格式为 `YYYY-MM-DD`。                                                             |
 | end_date                 | str          | 结束日期，格式为 `YYYY-MM-DD`。                                                             |
