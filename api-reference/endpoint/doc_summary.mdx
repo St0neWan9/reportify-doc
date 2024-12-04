@@ -1,11 +1,11 @@
 ---
-title: 'Contents Summary'
-openapi: 'GET /v1/contents/{doc_id}/summary'
+title: 'Docs Summary'
+openapi: 'GET /v1/docs/{doc_id}/summary'
 ---
 
 ## 文档总结
 
-**URL**: `/v1/contents/{doc_id}/summary`  
+**URL**: `/v1/docs/{doc_id}/summary`  
 **方法**: `GET`  
 **描述**: 获取指定文档的总结结果。
 
@@ -24,7 +24,7 @@ openapi: 'GET /v1/contents/{doc_id}/summary'
 
 **cURL**
 ```bash
-curl -X GET https://api.reportify.cc/v1/contents/1046895208953942016/summary \
+curl -X GET https://api.reportify.cc/v1/docs/1046895208953942016/summary \
 -H "Authorization: Bearer 447460****09c9"
 ```
 
@@ -32,7 +32,7 @@ curl -X GET https://api.reportify.cc/v1/contents/1046895208953942016/summary \
 ```python
 import requests
 
-url = "https://api.reportify.cc/v1/contents/1046895208953942016/summary"
+url = "https://api.reportify.cc/v1/docs/1046895208953942016/summary"
 headers = {
     "Authorization": "Bearer 447460****09c9"
 }

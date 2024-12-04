@@ -1,11 +1,11 @@
 ---
-title: 'Contents'
-openapi: 'GET /v1/contents/{doc_id}'
+title: 'Docs'
+openapi: 'GET /v1/docs/{doc_id}'
 ---
 
 ## 文档内容
 
-**URL**: `/v1/contents/{doc_id}`  
+**URL**: `/v1/docs/{doc_id}`  
 **方法**: `GET`  
 **描述**: 获取指定文档的详细内容，包括文档信息及内容块（chunks）。
 
@@ -50,7 +50,7 @@ openapi: 'GET /v1/contents/{doc_id}'
 
 **cURL**
 ```bash
-curl -X GET https://api.reportify.cc/v1/contents/1046895208953942016 \
+curl -X GET https://api.reportify.cc/v1/docs/1046895208953942016 \
 -H "Authorization: Bearer 447460****09c9"
 ```
 
@@ -58,7 +58,7 @@ curl -X GET https://api.reportify.cc/v1/contents/1046895208953942016 \
 ```python
 import requests
 
-url = "https://api.reportify.cc/v1/contents/1046895208953942016"
+url = "https://api.reportify.cc/v1/docs/1046895208953942016"
 headers = {
     "Authorization": "Bearer 447460****09c9"
 }
