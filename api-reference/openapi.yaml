@@ -472,7 +472,7 @@ components:
     OAIDocCategory:
       type: string
       enum:
-        - fillings
+        - filings
         - transcripts
         - reports
         - news
@@ -606,7 +606,7 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-            - fillings
+            - filings
             - transcripts
             - reports
             - news
@@ -662,7 +662,7 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-            - fillings
+            - filings
             - transcripts
             - reports
             - news
