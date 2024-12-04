@@ -15,7 +15,7 @@ openapi: 'POST /v1/chat/completion'
 |--------------|--------------|-----------------------------------------|
 | query        | str          | 问题或查询内容。                        |
 | doc_ids      | array[str]   | 指定文档 ID 列表，可选，默认为空数组。   |
-| mode         | str          | 响应模式，支持 `concise`, `research`, `agent`。 |
+| mode         | str          | 响应模式，支持 `concise`, `comprehensive`, `detailed`。 |
 | session_id   | str          | 会话 ID，用于跟踪问答上下文。            |
 | stream       | bool         | 是否使用流式传输响应，默认值为 `true`。  |
 
