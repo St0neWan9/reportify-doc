@@ -54,8 +54,8 @@
         {
           "group": "文档内容",
           "pages": [
-            "api-reference/endpoint/docs_doc",
-            "api-reference/endpoint/docs_summary"
+            "api-reference/endpoint/doc",
+            "api-reference/endpoint/doc_summary"
           ]
         }
       ]
