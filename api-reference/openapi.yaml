@@ -126,27 +126,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
-  /v1/docs/symbol/{symbol}:
-    get:
+  /v1/docs/symbols:
+    post:
       tags:
         - openapi
-      summary: Get Docs By Symbol
-      description: Retrieve docs for the specified symbol
-      operationId: get_docs_by_symbol_v1_docs_symbol__symbol__get
-      parameters:
-        - required: true
-          schema:
-            type: string
-            title: Symbol
-          name: symbol
-          in: path
+      summary: Query Docs By Symbols
+      description: Retrieve docs for the specified symbols
+      operationId: query_docs_by_symbols_v1_docs_symbols_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIDocsSymbolsRequest'
+        required: true
       responses:
         '200':
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAIDocsResponse'
+                $ref: '#/components/schemas/OAISearchDocsResponse'
         '400':
           description: Bad Request
           content:
@@ -167,27 +166,26 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
-  /v1/docs/tag/{tag}:
-    get:
+  /v1/docs/tags:
+    post:
       tags:
         - openapi
-      summary: Get Docs By Tag
-      description: Retrieve docs for the specified tag
-      operationId: get_docs_by_tag_v1_docs_tag__tag__get
-      parameters:
-        - required: true
-          schema:
-            type: string
-            title: Tag
-          name: tag
-          in: path
+      summary: Query Docs By Tags
+      description: Retrieve docs for the specified tags
+      operationId: query_docs_by_tags_v1_docs_tags_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIDocsTagsRequest'
+        required: true
       responses:
         '200':
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAIDocsResponse'
+                $ref: '#/components/schemas/OAISearchDocsResponse'
         '400':
           description: Bad Request
           content:
@@ -764,6 +762,90 @@ components:
         - code
         - message
       title: ErrorResponse      
+    OAIDocsSymbolsRequest:
+      properties:
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          default:
+            - filings
+            - transcripts
+            - reports
+            - news
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          default:
+            - cn
+            - hk
+            - us
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+      type: object
+      required:
+        - symbols
+      title: OAIDocsSymbolsRequest
+    OAIDocsTagsRequest:
+      properties:
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          default:
+            - filings
+            - transcripts
+            - reports
+            - news
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          default:
+            - cn
+            - hk
+            - us
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+      type: object
+      required:
+        - tags
+      title: OAIDocsTagsRequest      
   securitySchemes:
     BearerAuth:
       type: http

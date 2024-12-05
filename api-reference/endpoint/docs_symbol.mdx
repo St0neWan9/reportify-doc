@@ -1,19 +1,19 @@
 ---
 title: 'Docs by Symbol'
-openapi: 'GET /v1/docs/symbol/{symbol}'
+openapi: 'POST /v1/docs/symbols'
 ---
 
 ## 根据股票代码获取文档
 
-**URL**: `/v1/docs/symbol/{symbol}`  
-**方法**: `GET`  
+**URL**: `/v1/docs/symbols`  
+**方法**: `POST`  
 **描述**: 根据指定股票代码（symbol）获取相关文档。
 
 ### 请求参数
 
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
-| symbol       | str          | 股票代码，例如 `AAPL`。                                    |
+| symbols       | array          | 股票代码数组，例如 `["AAPL", "TSLA"]`。                   |
 | language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
 | categories     | array  | 文档类别（默认不包含 `webpage`），可选值有 `filings`，`transcripts`，`reports`，`news`，`webpage`。 |
 | start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
@@ -55,9 +55,16 @@ openapi: 'GET /v1/docs/symbol/{symbol}'
 ### 请求示例
 **cURL**
 ```bash
-curl -X GET "https://api.reportify.cc/v1/docs/symbol/AAPL" \
--H "Authorization: Bearer 447460****09c9"
+curl -X POST "https://api.reportify.cc/v1/docs/symbols" \
+-H "Authorization: Bearer 447460****09c9" \
 -H "Content-Type: application/json" \
+-d '{"symbols": ["AAPL", "TSLA"], 
+"language": "english", 
+"categories": ["filings", "transcripts"], 
+"start_date": "2024-01-01", 
+"end_date": "2024-12-31", 
+"page": 1, 
+"page_num": 10}'
 ```
 
 **Python 示例**
@@ -69,8 +76,16 @@ headers = {
     "Authorization": "Bearer 447460****09c9",
     "Content-Type": "application/json"
 }
-
-response = requests.get(url, headers=headers)
+data = {
+    "symbols": ["AAPL", "TSLA"],
+    "language": "english",
+    "categories": ["filings", "transcripts"],
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "page": 1,
+    "page_num": 10
+}
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
 ```
 

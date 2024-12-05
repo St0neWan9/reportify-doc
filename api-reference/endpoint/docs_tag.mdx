@@ -1,19 +1,19 @@
 ---
 title: 'Docs by Tag'
-openapi: 'GET /v1/docs/tag/{tag}'
+openapi: 'POST /v1/docs/tags'
 ---
 
 ## 根据标签获取文档
 
-**URL**: `/v1/docs/tag/{tag}`  
-**方法**: `GET`  
+**URL**: `/v1/docs/tags`  
+**方法**: `POST`  
 **描述**: 根据指定标签（tag）获取相关文档。
 
 ### 请求参数
 
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
-| tag       | str          | 标签，例如 `AI`。                                    |
+| tags       | array          | 标签数组，例如 `["AI", "Chips"]`。                   |
 | language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
 | categories     | array  | 文档类别（默认不包含 `webpage`），可选值有 `filings`，`transcripts`，`reports`，`news`，`webpage`。 |
 | start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
@@ -55,22 +55,37 @@ openapi: 'GET /v1/docs/tag/{tag}'
 ### 请求示例
 **cURL**
 ```bash
-curl -X GET "https://api.reportify.cc/v1/docs/tag/AI" \
+curl -X POST "https://api.reportify.cc/v1/docs/tags" \
 -H "Authorization: Bearer 447460****09c9" \
--H "Content-Type: application/json"
+-H "Content-Type: application/json" \
+-d '{"tags": ["AI", "Chips"], 
+"language": "english", 
+"categories": ["filings", "transcripts"], 
+"start_date": "2024-01-01", 
+"end_date": "2024-12-31", 
+"page": 1, 
+"page_num": 10}'
 ```
 
 **Python 示例**
 ```python
 import requests
 
-url = "https://api.reportify.cc/v1/docs/tag/AI"
+url = "https://api.reportify.cc/v1/docs/tags"
 headers = {
     "Authorization": "Bearer 447460****09c9",
     "Content-Type": "application/json"
 }
-
-response = requests.get(url, headers=headers)
+data = {  
+    "tags": ["AI", "Chips"],
+    "language": "english",
+    "categories": ["filings", "transcripts"],
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "page": 1,
+    "page_num": 10
+}
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
 ```
 
