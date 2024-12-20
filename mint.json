@@ -57,6 +57,12 @@
             "api-reference/endpoint/doc",
             "api-reference/endpoint/doc_summary"
           ]
+        },
+        {
+          "group": "概念列表",
+          "pages": [
+            "api-reference/endpoint/concepts_latest"
+          ]
         }
       ]
     }
