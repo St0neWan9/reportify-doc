@@ -1,12 +1,12 @@
 ---
 title: 'Latest Concepts'
-openapi: 'POST /v1/concepts/latest'
+openapi: 'GET /v1/concepts/latest'
 ---
 
 ## 获取最新概念
 
 **URL**: `/v1/concepts/latest`  
-**方法**: `POST`  
+**方法**: `GET`  
 **描述**: 获取最新概念。
 
 
@@ -34,7 +34,7 @@ openapi: 'POST /v1/concepts/latest'
 
 **cURL**
 ```bash
-curl -X POST "https://api.reportify.cc/v1/concepts/latest" \
+curl -X GET "https://api.reportify.cc/v1/concepts/latest" \
 -H "Authorization: Bearer 447460****09c9" \
 -H "Content-Type: application/json"
 ```
@@ -49,7 +49,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-response = requests.post(url, headers=headers)
+response = requests.GET(url, headers=headers)
 print(response.json())
 ```
 
