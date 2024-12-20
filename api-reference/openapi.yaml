@@ -906,7 +906,7 @@ components:
           title: Published At
         stocks:
           items:
-            type: object
+            $ref: '#/components/schemas/OAIConceptWithStocks'
           type: array
           title: Stocks
       type: object
@@ -914,6 +914,16 @@ components:
         - concept_id
         - concept_name
       title: ConceptWithStocks            
+    OAIConceptWithStocks:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      title: OAIConceptWithStocks      
   securitySchemes:
     BearerAuth:
       type: http
