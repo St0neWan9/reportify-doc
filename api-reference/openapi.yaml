@@ -288,7 +288,43 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
-
+  /v1/concepts/latest:
+    get:
+      tags:
+        - openapi
+      summary: Get Latest Concepts
+      description: get latest concepts
+      operationId: get_latest_concepts_v1_concepts_latest_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConceptWithStocks'
+                type: array
+                title: Response Get Latest Concepts V1 Concepts Latest Get
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []
 components:
   schemas:
     OAIChatCompletionRequest:
@@ -845,7 +881,39 @@ components:
       type: object
       required:
         - tags
-      title: OAIDocsTagsRequest      
+      title: OAIDocsTagsRequest
+    ConceptWithStocks:
+      properties:
+        concept_id:
+          type: string
+          title: Concept Id
+        concept_name:
+          type: string
+          title: Concept Name
+        concept_desc:
+          type: string
+          title: Concept Desc
+        concept_keywords:
+          items:
+            type: string
+          type: array
+          title: Concept Keywords
+        concept_score:
+          type: number
+          title: Concept Score
+        published_at:
+          type: integer
+          title: Published At
+        stocks:
+          items:
+            type: object
+          type: array
+          title: Stocks
+      type: object
+      required:
+        - concept_id
+        - concept_name
+      title: ConceptWithStocks            
   securitySchemes:
     BearerAuth:
       type: http

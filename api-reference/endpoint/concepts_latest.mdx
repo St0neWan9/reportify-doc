@@ -1,0 +1,130 @@
+---
+title: 'Latest Concepts'
+openapi: 'POST /v1/concepts/latest'
+---
+
+## 获取最新概念
+
+**URL**: `/v1/concepts/latest`  
+**方法**: `POST`  
+**描述**: 获取最新概念。
+
+
+### 请求参数
+| 参数名 | 类型 | 描述          |
+|--------|------|---------------|
+| - | -  | - |
+
+
+### 响应参数
+| 参数名 | 类型 | 描述 |
+|--------|------|------|
+| concept_id | str | 概念唯一标识 |
+| concept_name | str | 概念name |
+| concept_desc | str | 概念描述 |
+| concept_keywords | array[str] | 概念关键词列表 |
+| concept_score | float | 概念得分 |
+| published_at | int | 发布时间戳 |
+| stocks | array | 相关股票列表 |
+|   code | str | 股票code |
+|   name | str | 股票name |
+
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X POST "https://api.reportify.cc/v1/concepts/latest" \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json"
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cc/v1/concepts/latest"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, headers=headers)
+print(response.json())
+```
+
+### 响应示例
+```json
+[
+  {
+    "concept_id": "9996976934321158",
+    "concept_name": "AI芯片",
+    "concept_desc": "AI芯片是专门为人工智能应用设计的处理器，具有高性能、低功耗等特点。随着人工智能技术的快速发展，AI芯片在数据中心、边缘计算、智能设备等领域的应用越来越广泛。近年来，AI芯片市场竞争激烈，各大科技公司纷纷推出自研芯片，以提升计算能力和效率。",
+    "concept_keywords": [
+      "人工智能",
+      "ASIC",
+      "GPU",
+      "数据中心"
+    ],
+    "concept_score": 0.81,
+    "published_at": 1734678164302,
+    "stocks": [
+      {
+        "code": "688343",
+        "name": "云天励飞-U"
+      },
+      {
+        "code": "603893",
+        "name": "瑞芯微"
+      },
+      {
+        "code": "000818",
+        "na'me": "航锦科技"
+      },
+      {
+        "code": "688049",
+        "name": "炬芯科技"
+      },
+      {
+        "code": "688107",
+        "name": "安路科技"
+      }
+    ]
+  },
+  {
+    "concept_id": "9996976933469190",
+    "concept_name": "锂矿概念",
+    "concept_desc": "锂矿概念涉及锂矿资源的开采、加工及应用，锂矿是生产锂电池的重要原材料，广泛应用于新能源汽车、储能设备等领域。随着全球对新能源需求的增加，锂矿市场需求持续增长，相关企业也在不断扩产以满足市场需求。",
+    "concept_keywords": [
+      "锂矿",
+      "锂电池",
+      "新能源"
+    ],
+    "concept_score": 0.03,
+    "published_at": 1734678164289,
+    "stocks": [
+      {
+        "code": "002213",
+        "name": "大为股份"
+      },
+      {
+        "code": "300518",
+        "name": "新迅达"
+      },
+      {
+        "code": "002738",
+        "name": "中矿资源"
+      },
+      {
+        "code": "002460",
+        "name": "赣锋锂业"
+      },
+      {
+        "code": "002497",
+        "name": "雅化集团"
+      }
+    ]
+  }
+]
+```
+
