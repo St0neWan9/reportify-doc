@@ -17,7 +17,7 @@ openapi: 'POST /v1/chat/completion'
 | doc_ids      | array[str]   | 指定文档 ID 列表，可选，默认为空数组。   |
 | mode         | str          | 响应模式，支持 `concise`, `comprehensive`, `detailed`。 |
 | session_id   | str          | 会话 ID，用于跟踪问答上下文。            |
-| stream       | bool         | 是否使用流式传输响应，默认值为 `true`。  |
+| stream       | bool         | 是否使用流式传输响应，默认值为 `true`，当前只支持 `true`。  |
 
 ### 响应参数
 | 参数名      | 类型 | 描述                    |
@@ -66,10 +66,45 @@ print(response.json())
 
 ### 响应示例
 ```json
-{
-  "type": "answer",
-  "message_id": "msg_12345",
-  "message": "AI is advancing rapidly in finance, healthcare, and robotics, with new applications in predictive analytics and automation.",
-  "extra": {}
-}
+data: {"type": "questions", "message_id": "10035660298823686", "message": "", "extra": {"questions": ["特斯拉最近的营收和利润情况如何？", "特斯拉最近的交付量和生产量如何？", "特斯拉最近在市场上的表现如何？"], "in_steps": false}}
+
+data: {"type": "start", "message_id": "10035660298823686", "message": "特斯拉最近业绩表现", "extra": {}}
+
+data: {"type": "info", "message_id": "10035660298823686", "message": "", "extra": {"tool": {"key": "", "query": "特斯拉最近的营收和利润情况如何？\n特斯拉最近的交付量和生产量如何？\n特斯拉最近在市场上的表现如何？", "question": "特斯拉最近的营收和利润情况如何？\n特斯拉最近的交付量和生产量如何？\n特斯拉最近在市场上的表现如何？"}}}
+
+data: {"type": "info", "message_id": "10035660298823686", "message": "", "extra": {"sources": [{"type": "table", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cc/filings/1046895208953942016"}}]}}
+
+data: {"type": "answer", "message_id": "10035660298823686", "message": "特斯拉最近业绩表现", "extra": {"sources": [{"type": "table", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cc/filings/1046895208953942016"}}]}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "特斯拉", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "2", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "0", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "2", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "4", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "年", "extra": {}}
+
+......
+......
+......
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "渗透率", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "[", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "3", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "7", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "]", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "。", "extra": {}}
+
+data: {"type": "stream", "message_id": "10035660298823686", "message": "", "extra": {}}
+
+data: {"type": "end", "message_id": "10035660298823686", "message": "特斯拉2024年第三季度业绩表现如下：\n- **营收情况**：\n    - **总营收**：第三季度总营收为251.8亿美元，同比增长8%。其中，汽车业务营收228.06亿美元，同比增长5%；能源生成和存储业务营收23.76亿美元，同比增长52%；服务及其他业务营收27.9亿美元，同比增长29%[2][9]。\n![](https://duplik-1252068037.cos.ap-beijing.myqcloud.com/duplik/447460783945158/478331591190662/604690073731654/element/117.jpg)\n![](https://duplik-1252068037.cos.ap-beijing.myqcloud.com/duplik/447460783945158/478331591190662/604690073731654/element/95.jpg)\n    - **汽车业务细分**：汽车销售营收188.31亿美元，同比增长1%，主要因Model 3和Model Y现金交付量增加以及Cybertruck交付量上升，同时车辆平均售价降低和产品组合变化部分抵消了增长；汽车监管信贷营收7.39亿美元，同比增长33%，受北美地区信贷需求推动；汽车租赁营收4.46亿美元，同比下降9%，主要因直接销售型租赁交付量降低和租赁买断减少[2][11][18]。\n    - **能源生成和存储业务**：营收增长主要由于Megapack和Powerwall的部署增加[36]。\n    - **服务及其他业务**：营收增长主要源于非保修维护服务、碰撞修复收入、二手车收入、付费超级充电收入、保险服务收入和零部件销售收入的增加[12]。\n- **利润情况**：\n    - **净利润**：第三季度净利润为21.83亿美元，同比增长16.3%。归属于普通股股东的净利润为21.67亿美元，同比增长17.0%[4][6]。\n![](https://duplik-1252068037.cos.ap-beijing.myqcloud.com/duplik/447460783945158/478331591190662/604690073731654/element/9.jpg)\n![](https://duplik-1252068037.cos.ap-beijing.myqcloud.com/duplik/447460783945158/478331591190662/604690073731654/element/6.jpg)\n    - **利润率**：总汽车业务的毛利率从2023年第三季度的18.7%上升至20.4年第三季度的20.1%，主要得益于单位车辆平均综合成本降低、FSD收入和监管信贷收入增加，部分被车辆平均售价降低所抵消[31]。\n- **现金流情况**：\n    - **经营活动现金流**：九个月内提供的经营活动净现金为101.09亿美元，较2023年同期的88.86亿美元增加12.2亿美元，主要因净经营资产和负债的有利变化，部分被净收入（不含非现金费用、收益和损失）的减少所抵消[7][17]。\n- **生产与交付情况**：\n    - **汽车生产与交付**：2024年前三季度生产约131.4万辆消费类汽车，交付约129.4万辆。专注于盈利性增长，包括利用现有工厂和生产线推出新产品、降低成本、提高产能和交付能力等[37]。\n    - **能源存储产品部署**：2024年前三季度部署了20.41 GWh的能源存储产品，专注于提高生产和市场渗透率[37]。", "extra": {"return_mode": 1, "agent_mode": 2}}
 ```
