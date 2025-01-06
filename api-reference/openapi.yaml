@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API documentation for Reportify's document management and search services.
 servers:
-  - url: https://api.reportify.cc
+  - url: https://api.reportify.cn
 paths:
   /v1/search:
     post:

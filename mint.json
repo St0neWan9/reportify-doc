@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "技术支持",
-      "url": "mailto:hi@reportify.cc"
+      "url": "mailto:hi@reportify.cn"
     }
   ],
   "topbarCtaButton": {
     "name": "工作台",
-    "url": "https://dashboard.reportify.cc"
+    "url": "https://dashboard.reportify.cn"
   },
   "navigation": [
     {

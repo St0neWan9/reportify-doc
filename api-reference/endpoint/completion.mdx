@@ -31,7 +31,7 @@ openapi: 'POST /v1/chat/completion'
 
 **cURL**
 ```bash
-curl -X POST https://api.reportify.cc/v1/chat/completion \
+curl -X POST https://api.reportify.cn/v1/chat/completion \
 -H "Authorization: Bearer 447460****09c9" \
 -H "Content-Type: application/json" \
 -d '{
@@ -47,7 +47,7 @@ curl -X POST https://api.reportify.cc/v1/chat/completion \
 ```python
 import requests
 
-url = "https://api.reportify.cc/v1/chat/completion"
+url = "https://api.reportify.cn/v1/chat/completion"
 headers = {
     "Authorization": "Bearer 447460****09c9",
     "Content-Type": "application/json"
@@ -72,9 +72,9 @@ data: {"type": "start", "message_id": "10035660298823686", "message": "特斯拉
 
 data: {"type": "info", "message_id": "10035660298823686", "message": "", "extra": {"tool": {"key": "", "query": "特斯拉最近的营收和利润情况如何？\n特斯拉最近的交付量和生产量如何？\n特斯拉最近在市场上的表现如何？", "question": "特斯拉最近的营收和利润情况如何？\n特斯拉最近的交付量和生产量如何？\n特斯拉最近在市场上的表现如何？"}}}
 
-data: {"type": "info", "message_id": "10035660298823686", "message": "", "extra": {"sources": [{"type": "text", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cc/filings/1046895208953942016"}}]}}
+data: {"type": "info", "message_id": "10035660298823686", "message": "", "extra": {"sources": [{"type": "text", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cn/filings/1046895208953942016"}}]}}
 
-data: {"type": "answer", "message_id": "10035660298823686", "message": "特斯拉最近业绩表现", "extra": {"sources": [{"type": "table", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cc/filings/1046895208953942016"}}]}}
+data: {"type": "answer", "message_id": "10035660298823686", "message": "特斯拉最近业绩表现", "extra": {"sources": [{"type": "table", "summary": "", "doc": {"doc_id": "1046895208953942016", "title": "Tesla(TSLA) - 2024 Q3 - Quarterly Report", "url": "https://reportify.cn/filings/1046895208953942016"}}]}}
 
 data: {"type": "stream", "message_id": "10035660298823686", "message": "特斯拉", "extra": {}}
 
