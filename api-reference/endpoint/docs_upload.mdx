@@ -10,21 +10,23 @@ openapi: 'POST /v1/docs/upload'
 **描述**: 同步上传单篇报告文档至指定文件夹。
 
 ### 请求参数
-| 参数名       | 类型    | 描述                             |
+| 参数名       | 类型    | 描述                         |
 |-----------|-------|--------------------------------|
-| folder_id | str   | 目标文件夹 ID。                      |
-| name      | str   | 文档名称。                          |
-| path      | str   | 文档的文件路径。                       |
-| metadatas | dict  | 元数据字典，包含以下字段：                  |
-|   key     | str   | 元数据类型（如 `period`, `entities`）。 |
-|   value   | array | 元数据内容数组。                       |
+| folder_id   | str   | 目标文件夹 ID。                        |
+| docs        | array | 文档数组，每个文档包含以下字段：         |
+|   name      | str   | 文档名称。                            |
+|   url       | str   | 文档的互联网 URL 路径。                |
+|   metadatas | dict  | 元数据字典，包含以下字段：              |
+|     key     | str   | 元数据类型（如 `period`, `entities`）。 |
+|     value   | array | 元数据内容数组。                       |
 
 ### 响应参数
 | 参数名 | 类型 | 描述         |
 |--------|------|--------------|
-| id     | str  | 文档唯一 ID   |
-| title  | str  | 文档标题      |
-| original_url | str | 文档原始URL |
+| docs   | array | 文档数组，每个文档包含以下字段： |
+|   id   | str  | 文档唯一 ID   |
+|   title  | str  | 文档标题      |
+|   original_url | str | 文档原始URL |
 
 ### 请求示例
 
@@ -36,7 +38,7 @@ curl -X POST https://api.reportify.cn/v1/docs/upload \
 -d '{
     "folder_id": "folder_12345",
     "name": "Tesla AI Report",
-    "path": "/path/to/tesla_report.pdf",
+    "url": "https://files.reportify.cn/tesla_report.pdf",
     "metadatas": {
       "period": "Q4 2023",
       "entities": [
@@ -58,15 +60,19 @@ headers = {
 }
 payload = {
     "folder_id": "folder_12345",
-    "name": "Tesla AI Report",
-    "path": "/path/to/tesla_report.pdf",
-    "metadatas": {
-      "period": "Q4 2023",
-      "entities": [
-        "Tesla Inc.",
-        "TSLA"
-      ]
-    }
+    "docs": [
+        {
+            "name": "Tesla AI Report",
+            "url": "https://files.reportify.cn/tesla_report.pdf",
+            "metadatas": {
+                "period": "Q4 2023",
+                "entities": [
+                    "Tesla Inc.",
+                    "TSLA"
+                ]
+            }
+        }
+    ]
 }
 
 response = requests.post(url, headers=headers, json=payload)
@@ -76,9 +82,13 @@ print(response.json())
 ### 响应示例
 ```json
 {
-  "id": "doc_67890",
-  "title": "Tesla AI Report",
-  "original_url": "https://files.reportify.cn/files/tesla_report.pdf"
+  "docs": [
+    {
+      "id": "doc_67890",
+      "title": "Tesla AI Report",
+      "original_url": "https://files.reportify.cn/tesla_report_uploaded.pdf"
+    }
+  ]
 }
 ```
 

@@ -997,7 +997,7 @@ components:
           type: string
           title: Name
           description: file name, if not provided, use URL file name
-        meta_datas:
+        metadatas:
           type: object
           title: Meta Datas
           description: document metadata, contains period and entities
