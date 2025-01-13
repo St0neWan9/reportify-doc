@@ -61,8 +61,8 @@
         {
           "group": "文档上传",
           "pages": [
-            "api-reference/endpoint/docs_upload",
-            "api-reference/endpoint/docs_folder_create"
+            "api-reference/endpoint/docs_folder_create",
+            "api-reference/endpoint/docs_upload"
           ]
         },
         {
