@@ -24,6 +24,7 @@ openapi: 'POST /v1/docs/upload'
 |--------|------|--------------|
 | id     | str  | 文档唯一 ID   |
 | title  | str  | 文档标题      |
+| original_url | str | 文档原始URL |
 
 ### 请求示例
 
@@ -76,7 +77,8 @@ print(response.json())
 ```json
 {
   "id": "doc_67890",
-  "title": "Tesla AI Report"
+  "title": "Tesla AI Report",
+  "original_url": "https://reportify.cn/files/tesla_report.pdf"
 }
 ```
 

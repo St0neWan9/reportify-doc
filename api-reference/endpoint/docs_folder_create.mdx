@@ -18,7 +18,6 @@ openapi: 'POST /v1/docs/folder/create'
 | 参数名 | 类型 | 描述         |
 |--------|------|--------------|
 | id     | str  | 文件夹唯一 ID |
-| name   | str  | 文件夹名称    |
 
 ### 请求示例
 
@@ -52,8 +51,7 @@ print(response.json())
 ### 响应示例
 ```json
 {
-  "id": "folder_12345",
-  "name": "AI Reports"
+  "id": "folder_12345"
 }
 ```
 

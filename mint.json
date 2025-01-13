@@ -37,7 +37,7 @@
       "pages": [
         "api-reference/introduction",
         {
-          "group": "文档搜索和问答",
+          "group": "搜索和问答",
           "pages": [
             "api-reference/endpoint/search",
             "api-reference/endpoint/search_chunks",
