@@ -964,15 +964,15 @@ components:
       title: OAIDocsTagsRequest
     OAIDocsUploadRequest:
       properties:
+        folder_id:
+          type: integer
+          title: Folder Id
+          description: folder id, if not provided, use default folder
         docs:
           items:
             $ref: '#/components/schemas/OAIDocsUrlRequest'
           type: array
           title: Docs
-        folder_id:
-          type: integer
-          title: Folder Id
-          description: folder id, if not provided, use default folder
       type: object
       required:
         - docs
