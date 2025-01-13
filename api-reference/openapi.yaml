@@ -288,6 +288,86 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
+  /v1/docs/folder/create:
+    post:
+      tags:
+        - openapi
+      summary: Create Folder
+      description: OAI docs folder create
+      operationId: create_folder_v1_docs_folder_create_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIFolderCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIFolderResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []
+  /v1/docs/upload:
+    post:
+      tags:
+        - openapi
+      summary: Docs Upload
+      description: OAI docs upload
+      operationId: docs_upload_v1_docs_upload_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIDocsUploadRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsUploadResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []        
   /v1/concepts/latest:
     get:
       tags:
@@ -882,6 +962,89 @@ components:
       required:
         - tags
       title: OAIDocsTagsRequest
+    OAIDocsUploadRequest:
+      properties:
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIDocsUrlRequest'
+          type: array
+          title: Docs
+        folder_id:
+          type: integer
+          title: Folder Id
+          description: folder id, if not provided, use default folder
+      type: object
+      required:
+        - docs
+      title: OAIDocsUploadRequest
+    OAIDocsUploadResponse:
+      properties:
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIDocsIdResponse'
+          type: array
+          title: Docs
+      type: object
+      required:
+        - docs
+      title: OAIDocsUploadResponse
+    OAIDocsUrlRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+        name:
+          type: string
+          title: Name
+          description: file name, if not provided, use URL file name
+        meta_datas:
+          type: object
+          title: Meta Datas
+          description: document metadata, contains period and entities
+          example:
+            period: 2023Q4
+            entities:
+              - companyA
+              - companyB
+      type: object
+      required:
+        - url
+      title: OAIDocsUrlRequest
+    OAIDocsIdResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        title:
+          type: string
+          title: Title
+        original_url:
+          type: string
+          title: Original Url
+      type: object
+      required:
+        - id
+        - title
+        - original_url
+      title: OAIDocsIdResponse
+    OAIFolderCreateRequest:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+        - name
+      title: OAIFolderCreateRequest
+    OAIFolderResponse:
+      properties:
+        folder_id:
+          type: string
+          title: Folder Id
+      type: object
+      required:
+        - folder_id
+      title: OAIFolderResponse
     ConceptWithStocks:
       properties:
         concept_id:

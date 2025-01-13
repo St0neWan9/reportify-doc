@@ -1,11 +1,11 @@
 ---
-title: 'Folders'
-openapi: 'POST /v1/folders/create'
+title: 'Docs Folders Create'
+openapi: 'POST /v1/docs/folder/create'
 ---
 
 ## 创建文件夹
 
-**URL**: `/v1/folders/create`  
+**URL**: `/v1/docs/folder/create`  
 **方法**: `POST`  
 **描述**: 创建一个新的文件夹。
 
@@ -24,7 +24,7 @@ openapi: 'POST /v1/folders/create'
 
 **cURL**
 ```bash
-curl -X POST https://api.reportify.cn/v1/folders/create \
+curl -X POST https://api.reportify.cn/v1/docs/folder/create \
 -H "Authorization: Bearer 447460****09c9" \
 -H "Content-Type: application/json" \
 -d '{
@@ -36,7 +36,7 @@ curl -X POST https://api.reportify.cn/v1/folders/create \
 ```python
 import requests
 
-url = "https://api.reportify.cn/v1/folders/create"
+url = "https://api.reportify.cn/v1/docs/folder/create"
 headers = {
     "Authorization": "Bearer 447460****09c9",
     "Content-Type": "application/json"

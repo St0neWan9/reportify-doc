@@ -59,6 +59,13 @@
           ]
         },
         {
+          "group": "文档上传",
+          "pages": [
+            "api-reference/endpoint/docs_upload",
+            "api-reference/endpoint/docs_folder_create"
+          ]
+        },
+        {
           "group": "概念列表",
           "pages": [
             "api-reference/endpoint/concepts_latest"
