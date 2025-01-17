@@ -724,6 +724,7 @@ components:
             - transcripts
             - reports
             - news
+            - files
         symbols:
           items:
             type: string
@@ -780,6 +781,7 @@ components:
             - transcripts
             - reports
             - news
+            - files
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -939,6 +941,7 @@ components:
             - transcripts
             - reports
             - news
+            - files
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
