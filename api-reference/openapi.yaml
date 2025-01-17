@@ -590,7 +590,7 @@ components:
         - transcripts
         - reports
         - news
-        - webpage
+        - files
       title: OAIDocCategory
       description: An enumeration.
     OAIDocContentsResponse:
