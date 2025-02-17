@@ -1,0 +1,63 @@
+---
+title: 'Docs Delete'
+openapi: 'DELETE /v1/docs/delete'
+---
+
+## 删除文档
+
+**URL**: `/v1/docs/delete`  
+**方法**: `DELETE`  
+**描述**: 删除文档。
+
+### 请求参数
+| 参数名 | 类型 | 描述       |
+|--------|------|------------|
+| doc_ids     | list  | 文档唯一 ID |
+
+### 响应参数
+| 参数名 | 类型 | 描述         |
+|--------|------|--------------|
+| doc_ids     | list  | 文档唯一 ID |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X DELETE https://api.reportify.cn/v1/docs/delete \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "doc_ids": [
+        "632486024552595",
+        "632486024552596"        
+    ]
+}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cn/v1/docs/delete"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "doc_ids": [
+        "632486024552595",
+        "632486024552596"
+    ]
+}
+
+response = requests.delete(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+    "doc_ids":["632486024552595"]
+}
+```
+

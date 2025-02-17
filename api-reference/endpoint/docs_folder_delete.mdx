@@ -1,0 +1,59 @@
+---
+title: 'Folder Delete'
+openapi: 'DELETE /v1/docs/folder/delete'
+---
+
+## 删除文件夹
+
+**URL**: `/v1/docs/folder/delete`  
+**方法**: `DELETE`  
+**描述**: 删除一个文件夹。
+
+### 请求参数
+| 参数名 | 类型 | 描述       |
+|--------|------|------------|
+| folder_id     | str  | 文件夹唯一 ID |
+
+### 响应参数
+| 参数名 | 类型 | 描述         |
+|--------|------|--------------|
+| doc_ids     | list  | 文档唯一 ID |
+| folder_id     | str  | 文件夹唯一 ID |
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X DELETE https://api.reportify.cn/v1/docs/folder/delete \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{
+    "folder_id": "10134175594800134"
+}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cn/v1/docs/folder/delete"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+payload = {
+    "folder_id": "10134175594800134"
+}
+
+response = requests.delete(url, headers=headers, json=payload)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+    "doc_ids":["632486024552595"],
+    "folder_id":"10134175594800134"
+}
+```
+

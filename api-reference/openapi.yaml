@@ -328,6 +328,46 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
+  /v1/docs/folder/delete:
+    delete:
+      tags:
+        - openapi
+      summary: Delete Folder
+      description: OAI docs folder delete, include files in folder
+      operationId: delete_folder_v1_docs_folder_delete_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIFolderDeleteRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIFolderDeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []        
   /v1/docs/upload:
     post:
       tags:
@@ -348,6 +388,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OAIDocsUploadResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []
+  /v1/docs/delete:
+    delete:
+      tags:
+        - openapi
+      summary: Delete Docs
+      description: OAI docs delete
+      operationId: delete_docs_v1_docs_delete_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIDocsDeleteRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsDeleteResponse'
         '400':
           description: Bad Request
           content:
@@ -1048,6 +1128,52 @@ components:
       required:
         - folder_id
       title: OAIFolderResponse
+    OAIFolderDeleteRequest:
+      properties:
+        folder_id:
+          type: string
+          title: Folder Id
+      type: object
+      required:
+        - folder_id
+      title: OAIFolderDeleteRequest
+    OAIFolderDeleteResponse:
+      properties:
+        doc_ids:
+          items:
+            type: string
+          type: array
+          title: Doc Ids
+        folder_id:
+          type: string
+          title: Folder Id
+      type: object
+      required:
+        - doc_ids
+        - folder_id
+      title: OAIFolderDeleteResponse
+    OAIDocsDeleteRequest:
+      properties:
+        doc_ids:
+          items:
+            type: string
+          type: array
+          title: Doc Ids
+      type: object
+      required:
+        - doc_ids
+      title: OAIDocsDeleteRequest
+    OAIDocsDeleteResponse:
+      properties:
+        doc_ids:
+          items:
+            type: string
+          type: array
+          title: Doc Ids
+      type: object
+      required:
+        - doc_ids
+      title: OAIDocsDeleteResponse      
     ConceptWithStocks:
       properties:
         concept_id:
