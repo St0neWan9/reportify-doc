@@ -52,7 +52,7 @@
           ]
         },
         {
-          "group": "文档内容",
+          "group": "文档内容与总结",
           "pages": [
             "api-reference/endpoint/doc",
             "api-reference/endpoint/doc_summary"
