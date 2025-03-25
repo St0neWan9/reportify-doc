@@ -64,6 +64,8 @@
             "api-reference/endpoint/docs_folder_create",
             "api-reference/endpoint/docs_folder_delete",
             "api-reference/endpoint/docs_upload",
+            "api-reference/endpoint/docs_upload_async",
+            "api-reference/endpoint/docs_upload_status",
             "api-reference/endpoint/docs_delete"
           ]
         },
