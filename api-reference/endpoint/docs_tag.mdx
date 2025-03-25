@@ -29,26 +29,26 @@ openapi: 'POST /v1/docs/tags'
 | total_page     | int   | 总页数。                                                         |
 | total_num      | int   | 总条目数。                                                        |
 | docs           | array | 文档数组，每个文档包含以下字段：                                             |
-|   id           | str   | 文档唯一 ID。                                                     |
-|   title        | str   | 文档标题。                                                        |
-|   url          | str   | 文档网页链接。                                                      |
-|   file_url     | str   | 文档文件链接。                                                      |
-|   media_url    | str   | 媒体文件链接（如有）。                                                  |
-|   institution  | str   | 发布机构。                                                        |
-|   author       | str   | 作者。                                                          |
-|   published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
-|   category     | str   | 文档类别（`filings`, `transcripts`, `reports`, `news`, `files`）。 |
-|   market       | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
-|   symbol       | str   | 股票代码。                                                        |
-|   company_name | str   | 公司名称。                                                        |
-|   logo         | str   | 公司 Logo 链接。                                                  |
-|   summary      | str   | 文档摘要。*暂未支持*                                                        |
-|   tags         | dict  | 标签数组。                                                        |
-|     key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
-|     value      | array | 标签内容数组。                                                      |
-|   metadatas    | dict  | 元数据数组，包含以下字段：                                                |
-|     key        | str   | 元数据类型（如 `period`, `entities`）。                               |
-|     value      | array | 元数据内容数组。                                                     |
+| &nbsp;&nbsp;id           | str   | 文档唯一 ID。                                                     |
+| &nbsp;&nbsp;title        | str   | 文档标题。                                                        |
+| &nbsp;&nbsp;url          | str   | 文档网页链接。                                                      |
+| &nbsp;&nbsp;file_url     | str   | 文档文件链接。                                                      |
+| &nbsp;&nbsp;media_url    | str   | 媒体文件链接（如有）。                                                  |
+| &nbsp;&nbsp;institution  | str   | 发布机构。                                                        |
+| &nbsp;&nbsp;author       | str   | 作者。                                                          |
+| &nbsp;&nbsp;published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
+| &nbsp;&nbsp;category     | str   | 文档类别（`filings`, `transcripts`, `reports`, `news`, `files`）。 |
+| &nbsp;&nbsp;market       | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
+| &nbsp;&nbsp;symbol       | str   | 股票代码。                                                        |
+| &nbsp;&nbsp;company_name | str   | 公司名称。                                                        |
+| &nbsp;&nbsp;logo         | str   | 公司 Logo 链接。                                                  |
+| &nbsp;&nbsp;summary      | str   | 文档摘要。*暂未支持*                                                        |
+| &nbsp;&nbsp;tags         | dict  | 标签数组。                                                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 标签内容数组。                                                      |
+| &nbsp;&nbsp;metadatas    | dict  | 元数据数组，包含以下字段：                                                |
+| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `period`, `entities`）。                               |
+| &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 元数据内容数组。                                                     |
 
 
 ### 请求示例
