@@ -408,6 +408,87 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       security:
         - BearerAuth: []
+  /v1/docs/upload/async:
+    post:
+      tags:
+        - openapi
+      summary: Docs Upload Async
+      description: OAI docs upload async
+      operationId: docs_upload_async_v1_docs_upload_async_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAIDocsUploadRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsUploadResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []
+  /v1/docs/{doc_id}/upload/status:
+    get:
+      tags:
+        - openapi
+      summary: Get Upload Docs Status
+      description: OAI docs upload status
+      operationId: get_upload_docs_status_v1_docs__doc_id__upload_status_get
+      parameters:
+        - required: true
+          schema:
+            type: string
+            title: Doc Id
+          name: doc_id
+          in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsUploadStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: []        
   /v1/docs/delete:
     delete:
       tags:
@@ -1071,6 +1152,24 @@ components:
       required:
         - docs
       title: OAIDocsUploadResponse
+    OAIDocsUploadStatusResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        status:
+          type: string
+          title: Upload Status
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+      type: object
+      required:
+        - id
+        - status
+      title: OAIDocsUploadStatusResponse      
     OAIDocsUrlRequest:
       properties:
         url:

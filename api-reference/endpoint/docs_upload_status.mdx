@@ -1,0 +1,62 @@
+---
+title: 'Docs Upload Status'
+openapi: 'GET /v1/docs/upload/status'
+---
+
+## 同步上传文档
+
+**URL**: `/v1/docs/{doc_id}/upload/status`  
+**方法**: `GET`  
+**描述**: 获取文档上传状态。
+
+### 请求参数
+| 参数名       | 类型    | 描述                         |
+|-----------|-------|--------------------------------|
+| doc_id   | str   | 文档 ID。                        |
+
+
+### 响应参数
+| 参数名 | 类型 | 描述         |
+|--------|------|--------------|
+| status   | str  | 文档上传状态。 |
+
+### 文档上传状态
+| 状态 | 描述         |
+|--------|--------------|
+| pending   | 等待处理。 |
+| processing   | 处理中。 |
+| completed   | 处理完成。 |
+| failed   | 处理失败。 |
+
+
+### 请求示例
+
+**cURL**
+```bash
+curl -X GET https://api.reportify.cn/v1/docs/637270560798310/upload/status \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" 
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cn/v1/docs/637270560798310/upload/status"
+headers = { 
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+    "id": "637270560798310",
+    "status": "processing"
+}
+```
+
