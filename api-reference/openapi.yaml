@@ -1278,6 +1278,9 @@ components:
         concept_id:
           type: string
           title: Concept Id
+        concept_code:
+          type: string
+          title: Concept Code
         concept_name:
           type: string
           title: Concept Name
@@ -1292,29 +1295,68 @@ components:
         concept_score:
           type: number
           title: Concept Score
+        trending_score:
+          type: number
+          title: Trending Score
+        scored_at:
+          type: integer
+          title: Scored At
         published_at:
           type: integer
           title: Published At
+        first_detected:
+          type: boolean
+          title: First Detected
         stocks:
           items:
             $ref: '#/components/schemas/OAIConceptWithStocks'
           type: array
           title: Stocks
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIConceptWithDocs'
+          type: array
+          title: Docs
       type: object
       required:
         - concept_id
         - concept_name
-      title: ConceptWithStocks            
+      title: ConceptWithStocks
     OAIConceptWithStocks:
       properties:
+        market:
+          type: string
+          title: Market
         code:
           type: string
           title: Code
         name:
           type: string
           title: Name
+        description:
+          type: string
+          title: Description
+        relevance:
+          type: number
+          title: Relevance
       type: object
       title: OAIConceptWithStocks      
+    OAIConceptWithDocs:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        title:
+          type: string
+          title: Title
+        url:
+          type: string
+          title: Url
+        relevance:
+          type: number
+          title: Relevance
+      type: object
+      title: OAIConceptWithDocs
   securitySchemes:
     BearerAuth:
       type: http

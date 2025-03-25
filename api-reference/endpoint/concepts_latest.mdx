@@ -20,14 +20,26 @@ openapi: 'GET /v1/concepts/latest'
 | 参数名 | 类型 | 描述 |
 |--------|------|------|
 | concept_id | str | 概念唯一标识 |
-| concept_name | str | 概念name |
+| concept_code | str | 概念代码 |
+| concept_name | str | 概念名称 |
 | concept_desc | str | 概念描述 |
 | concept_keywords | array[str] | 概念关键词列表 |
-| concept_score | float | 概念得分 |
-| published_at | int | 发布时间戳 |
+| concept_score | float | 概念标准分 |
+| trending_score | float | 概念热度分 |
+| scored_at | int | 概念计算时间戳 |
+| published_at | int | 概念发布时间戳 |
+| first_detected | boolean | 是否首次出现 |
 | stocks | array | 相关股票列表 |
-| &nbsp;&nbsp;code | str | 股票code |
-| &nbsp;&nbsp;name | str | 股票name |
+| &nbsp;&nbsp;market | str | 股票市场 |
+| &nbsp;&nbsp;code | str | 股票代码 |
+| &nbsp;&nbsp;name | str | 股票名称 |
+| &nbsp;&nbsp;description | str | 股票描述 |
+| &nbsp;&nbsp;relevance | float | 股票相关性分数 |
+| docs | array | 相关文档列表 |
+| &nbsp;&nbsp;doc_id | str | 文档唯一标识 |
+| &nbsp;&nbsp;title | str | 文档标题 |
+| &nbsp;&nbsp;url | str | 文档链接 |
+| &nbsp;&nbsp;relevance | float | 文档相关性分数 |
 
 
 ### 请求示例
@@ -57,73 +69,132 @@ print(response.json())
 ```json
 [
   {
-    "concept_id": "9996976934321158",
-    "concept_name": "AI芯片",
-    "concept_desc": "AI芯片是专门为人工智能应用设计的处理器，具有高性能、低功耗等特点。随着人工智能技术的快速发展，AI芯片在数据中心、边缘计算、智能设备等领域的应用越来越广泛。近年来，AI芯片市场竞争激烈，各大科技公司纷纷推出自研芯片，以提升计算能力和效率。",
+    "concept_id": "10529065630577670",
+    "concept_code": "10512389099234310",
+    "concept_name": "东数西算(算力)",
+    "concept_desc": "东数西算是指将东部地区的数据计算需求转移到西部地区进行处理，以优化资源配置和降低能耗。这一概念近年来因国家政策的推动和算力需求的激增而备受关注，特别是在人工智能和大数据领域。",
     "concept_keywords": [
       "人工智能",
-      "ASIC",
-      "GPU",
+      "大数据",
+      "算力",
+      "AI算力",
+      "数字经济",
+      "东数西算",
       "数据中心"
     ],
-    "concept_score": 0.81,
-    "published_at": 1734678164302,
+    "concept_score": 0.22,
+    "trending_score": 80.0,
+    "scored_at": 1742800000000,
+    "published_at": 1742797193482,
+    "first_detected": false,
     "stocks": [
       {
-        "code": "688343",
-        "name": "云天励飞-U"
+        "market": "SH",
+        "code": "688256",
+        "name": "寒武纪",
+        "description": "寒武纪专注于人工智能核心芯片的研发与销售，其产品广泛应用于云端、边缘计算及终端设备，符合东数西算概念中优化算力资源配置的需求，特别是在AI和大数据领域。",
+        "relevance": 2.6
       },
       {
-        "code": "603893",
-        "name": "瑞芯微"
+        "market": "SH",
+        "code": "688041",
+        "name": "海光信息",
+        "description": "海光信息主营高端处理器研发与销售，其产品广泛应用于服务器和存储设备，符合东数西算概念中对算力资源优化配置的需求，且近期在AI国产算力领域表现突出，入选东数西算概念。",
+        "relevance": 2.6
       },
       {
-        "code": "000818",
-        "na'me": "航锦科技"
-      },
-      {
-        "code": "688049",
-        "name": "炬芯科技"
-      },
-      {
-        "code": "688107",
-        "name": "安路科技"
+        "market": "SH",
+        "code": "601138",
+        "name": "工业富联",
+        "description": "工业富联入选东数西算(算力)概念，因其主营业务涵盖云计算和通信网络设备，且在英伟达GTC2025大会上被提及将受益于Blackwell Ultra服务器的组装和零组件供应，符合东数西算的算力需求。",
+        "relevance": 2.4
       }
-    ]
+    ],
+    "docs": [
+      {
+        "doc_id": "1099839031891595264",
+        "title": "中国电子：GTC短期刺激不足；但我们看到长期更大空间",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1099839031891595264",
+        "relevance": 0.85
+      },
+      {
+        "doc_id": "1100576885160677376",
+        "title": "科技行业跟踪报告之五：英伟达GTC2025发布新一代GPU，推动全球AI基础设施建设",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1100576885160677376",
+        "relevance": 0.85
+      },
+      {
+        "doc_id": "1099844256144691200",
+        "title": "AI的进击时刻系列13：英伟达GTC大会开幕，走向代理式AI、物理AI时代",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1099844256144691200",
+        "relevance": 0.84
+      }
+    ]    
   },
   {
-    "concept_id": "9996976933469190",
-    "concept_name": "锂矿概念",
-    "concept_desc": "锂矿概念涉及锂矿资源的开采、加工及应用，锂矿是生产锂电池的重要原材料，广泛应用于新能源汽车、储能设备等领域。随着全球对新能源需求的增加，锂矿市场需求持续增长，相关企业也在不断扩产以满足市场需求。",
-    "concept_keywords": [
-      "锂矿",
-      "锂电池",
-      "新能源"
+    "concept_id": "10529065644733446",
+    "concept_code": "10512389541143558",
+    "concept_name": "人工智能",
+    "concept_desc": "人工智能（AI）是当前科技发展的核心驱动力之一，广泛应用于医疗、金融、教育等多个领域。随着大模型技术的突破，AI在提升服务效率、优化业务流程等方面展现出巨大潜力。",    "concept_keywords": [
+      "DeepSeek",
+      "数据驱动决策",
+      "人工智能",
+      "FSD",
+      "通义大模型",
+      "智能驾驶",
+      "激光雷达",
+      "AI",
+      "端侧大模型",
+      "计算机视觉",
     ],
-    "concept_score": 0.03,
-    "published_at": 1734678164289,
+    "concept_score": 0.37,
+    "trending_score": 134.0,
+    "scored_at": 1742800000000,
+    "published_at": 1742797193698,
+    "first_detected": false,
     "stocks": [
       {
-        "code": "002213",
-        "name": "大为股份"
+        "market": "SZ",
+        "code": "002230",
+        "name": "iFLYTEK",
+        "description": "iFLYTEK专注于人工智能核心技术研究及产品研发，广泛应用于教育、医疗、金融等领域，符合人工智能热点概念，且近期参与AI+Communication Service白皮书，进一步凸显其在AI领域的影响力。",
+        "relevance": 5.4
       },
       {
-        "code": "300518",
-        "name": "新迅达"
+        "market": "SH",
+        "code": "688561",
+        "name": "奇安信科技集团股份有限公司",
+        "description": "奇安信科技集团股份有限公司入选人工智能概念，因其在网络安全领域的技术创新与AI深度融合，特别是在大数据智能安全检测与管控产品中应用AI技术，提升安全防护效能，符合人工智能在安全领域的应用趋势。",
+        "relevance": 2.4
       },
       {
-        "code": "002738",
-        "name": "中矿资源"
-      },
-      {
-        "code": "002460",
-        "name": "赣锋锂业"
-      },
-      {
-        "code": "002497",
-        "name": "雅化集团"
+        "market": "SH",
+        "code": "688111",
+        "name": "金山办公",
+        "description": "金山办公凭借其WPSAI办公助手等AI产品，成功将人工智能技术应用于办公软件领域，提升了办公效率，符合人工智能热点概念，因此入选。",
+        "relevance": 2.2
       }
-    ]
+    ],
+    "docs": [
+      {
+        "doc_id": "1100563857535012864",
+        "title": "人工智能：《人工智能生成合成内容标识办法》发布，规范人工智能行业发展",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1100563857535012864",
+        "relevance": 0.95
+      },
+      {
+        "doc_id": "1100680568103899136",
+        "title": "珠海最新公布！“三张清单”到底是啥？民营科技迎来重大利好",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1100680568103899136",
+        "relevance": 0.95
+      },
+      {
+        "doc_id": "1100738908834107392",
+        "title": "全球技术报告：金融服务业洞察",
+        "url": "https://reportify-qa.xiaobangtouzi.com/reports/1100738908834107392",
+        "relevance": 0.95
+      }
+    ]    
   }
 ]
 ```
