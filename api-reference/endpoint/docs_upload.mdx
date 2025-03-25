@@ -14,11 +14,11 @@ openapi: 'POST /v1/docs/upload'
 |-----------|-------|--------------------------------|
 | folder_id   | str   | 目标文件夹 ID。                        |
 | docs        | array | 文档数组，每个文档包含以下字段：         |
-|`  `name      | str   | 文档名称。                            |
-|`  `url       | str   | 文档的互联网 URL 路径。                |
-|`  `metadatas | dict  | 元数据字典，包含以下字段：              |
-|`    `key     | str   | 元数据类型（如 `period`, `entities`）。 |
-|`    `value   | array | 元数据内容数组。                       |
+|&nbsp;&nbsp;name      | str   | 文档名称。                            |
+|&nbsp;&nbsp;url       | str   | 文档的互联网 URL 路径。                |
+|&nbsp;&nbsp;metadatas | dict  | 元数据字典，包含以下字段：              |
+|&nbsp;&nbsp;&nbsp;&nbsp;key     | str   | 元数据类型（如 `period`, `entities`）。 |
+|&nbsp;&nbsp;&nbsp;&nbsp;value   | array | 元数据内容数组。                       |
 
 ### 响应参数
 | 参数名 | 类型 | 描述         |
