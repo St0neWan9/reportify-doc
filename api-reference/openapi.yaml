@@ -880,12 +880,6 @@ components:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
-          default:
-            - filings
-            - transcripts
-            - reports
-            - news
-            - files
         symbols:
           items:
             type: string
@@ -937,20 +931,10 @@ components:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
-          default:
-            - filings
-            - transcripts
-            - reports
-            - news
-            - files
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
-          default:
-            - cn
-            - hk
-            - us
         institutions:
           items:
             type: string
@@ -1055,19 +1039,10 @@ components:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
-          default:
-            - filings
-            - transcripts
-            - reports
-            - news
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
-          default:
-            - cn
-            - hk
-            - us
         start_date:
           type: string
           title: Start Date
@@ -1097,20 +1072,10 @@ components:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
-          default:
-            - filings
-            - transcripts
-            - reports
-            - news
-            - files
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
-          default:
-            - cn
-            - hk
-            - us
         start_date:
           type: string
           title: Start Date
