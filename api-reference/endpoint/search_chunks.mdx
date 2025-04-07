@@ -18,6 +18,9 @@ openapi: 'POST /v1/search/chunks'
 | markets                  | array        | 市场区域，默认包括所有市场。可选值有 `cn`，`hk`，`us`。*暂未支持*                                    |
 | institutions             | array        | 指定机构筛选，如 `Morgan Stanley`，`财联社`。*暂未支持*                                               |
 | symbols                  | array        | 股票代码筛选，如 `000001`，`00700`，`AAPL`。                                               |
+| tags                     | dict         | 标签数组。                                                        |
+| &nbsp;&nbsp;key          | str          | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;value        | array        | 标签内容数组。                                                      |
 | start_date               | str          | 开始日期，格式为 `YYYY-MM-DD`。                                                             |
 | end_date                 | str          | 结束日期，格式为 `YYYY-MM-DD`。                                                             |
 | num                      | int          | 返回的结果数量，默认值为 `10`。                                                             |

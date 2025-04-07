@@ -16,6 +16,11 @@ openapi: 'POST /v1/chat/completion'
 | query        | str          | 问题或查询内容。                        |
 | doc_ids      | array[str]   | 指定文档 ID 列表，可选，默认为空数组。   |
 | mode         | str          | 响应模式，支持 `concise`, `comprehensive`, `detailed`。 |
+| market       | str          | 市场区域（`cn`, `hk`, `us`）。                                      |
+| symbol       | str          | 股票代码。                                                        |
+| tags         | dict         | 标签数组。                                                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;key | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;&nbsp;&nbsp;value| array | 标签内容数组。                                                      |
 | session_id   | str          | 会话 ID，用于跟踪问答上下文。            |
 | stream       | bool         | 是否使用流式传输响应，默认值为 `true`，当前只支持 `true`。  |
 
