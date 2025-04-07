@@ -24,6 +24,10 @@ openapi: 'POST /v1/chat/completion'
 | session_id   | str          | 会话 ID，用于跟踪问答上下文。            |
 | stream       | bool         | 是否使用流式传输响应，默认值为 `true`，当前只支持 `true`。  |
 
+**说明：**
+- 当 categories 为 `files` 时，可以通过指定 `tags` 参数来筛选上传的文件（上传时制定了相应的 `tags`）。
+
+
 ### 响应参数
 | 参数名      | 类型 | 描述                    |
 |-------------|------|-------------------------|
