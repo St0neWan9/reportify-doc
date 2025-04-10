@@ -611,7 +611,12 @@ components:
                 type: array
           type: array<object>
           title: Tags
-          default: []
+          default: [{industry: [industryA, industryB]}]
+          example:
+            - key: industry
+              value:
+                - industryA
+                - industryB
         session_id:
           type: string
           title: Session Id
@@ -932,7 +937,12 @@ components:
                 type: array
           type: array<object>
           title: Tags
-          default: []        
+          default: [{industry: [industryA, industryB]}]
+          example:
+            - key: industry
+              value:
+                - industryA
+                - industryB          
         start_date:
           type: string
           title: Start Date
@@ -1005,6 +1015,11 @@ components:
           type: array<object>
           title: Tags
           default: []
+          example:
+            - key: industry
+              value:
+                - industryA
+                - industryB          
         start_date:
           type: string
           title: Start Date
@@ -1219,7 +1234,12 @@ components:
                 type: array
           type: array<object>
           title: Tags
-          default: []
+          default: [{industry: [industryA, industryB]}]
+          example:
+            - key: industry
+              value:
+                - industryA
+                - industryB
       type: object
       required:
         - url
