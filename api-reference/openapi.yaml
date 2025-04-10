@@ -603,20 +603,10 @@ components:
           default: []
         tags:
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: array
-          type: array<object>
+            $ref: '#/components/schemas/OAITag'
+          type: array
           title: Tags
-          default: [{industry: [industryA, industryB]}]
-          example:
-            - key: industry
-              value:
-                - industryA
-                - industryB
+          default: []
         session_id:
           type: string
           title: Session Id
@@ -929,20 +919,10 @@ components:
           default: []
         tags:
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: array
-          type: array<object>
+            $ref: '#/components/schemas/OAITag'
+          type: array
           title: Tags
-          default: [{industry: [industryA, industryB]}]
-          example:
-            - key: industry
-              value:
-                - industryA
-                - industryB          
+          default: []
         start_date:
           type: string
           title: Start Date
@@ -1006,20 +986,10 @@ components:
           default: []
         tags:
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: array
-          type: array<object>
+            $ref: '#/components/schemas/OAITag'
+          type: array
           title: Tags
           default: []
-          example:
-            - key: industry
-              value:
-                - industryA
-                - industryB          
         start_date:
           type: string
           title: Start Date
@@ -1079,6 +1049,21 @@ components:
         - latest
       title: OAISearchSort
       description: An enumeration.
+    OAITag:
+      properties:
+        key:
+          type: string
+          title: Key
+        values:
+          items:
+            type: string
+          type: array
+          title: Values
+      type: object
+      required:
+        - key
+        - values
+      title: OAITag      
     ErrorResponse:
       properties:
         code:
@@ -1226,20 +1211,10 @@ components:
           description: published at, if not provided, use current time
         tags:
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: array
-          type: array<object>
+            $ref: '#/components/schemas/OAITag'
+          type: array
           title: Tags
-          default: [{industry: [industryA, industryB]}]
-          example:
-            - key: industry
-              value:
-                - industryA
-                - industryB
+          default: []
       type: object
       required:
         - url
