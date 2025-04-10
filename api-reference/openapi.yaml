@@ -583,6 +583,35 @@ components:
           allOf:
             - $ref: '#/components/schemas/OAIChatMode'
           default: concise
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          title: Categories
+          default: []
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          title: Markets
+          default: []
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+          default: []
+        tags:
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: array
+          type: array<object>
+          title: Tags
+          default: []
         session_id:
           type: string
           title: Session Id
@@ -621,7 +650,7 @@ components:
       enum:
         - concise
         - comprehensive
-        - detailed
+        - deepresearch
       title: OAIChatMode
       description: An enumeration.
     OAIChunk:
@@ -860,7 +889,8 @@ components:
     OAIMarket:
       type: string
       enum:
-        - cn
+        - sz
+        - sh
         - hk
         - us
       title: OAIMarket
@@ -886,6 +916,23 @@ components:
           type: array
           title: Symbols
           default: []
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          title: Markets
+          default: []
+        tags:
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: array
+          type: array<object>
+          title: Tags
+          default: []        
         start_date:
           type: string
           title: Start Date
@@ -949,8 +996,13 @@ components:
           default: []
         tags:
           items:
-            type: string
-          type: array
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: array
+          type: array<object>
           title: Tags
           default: []
         start_date:
@@ -1153,6 +1205,21 @@ components:
             entities:
               - companyA
               - companyB
+        published_at:
+          type: integer
+          title: Published At
+          description: published at, if not provided, use current time
+        tags:
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: array
+          type: array<object>
+          title: Tags
+          default: []
       type: object
       required:
         - url
