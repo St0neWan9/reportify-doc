@@ -945,17 +945,23 @@ components:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
-        symbols:
+        institutions:
           items:
             type: string
           type: array
-          title: Symbols
+          title: Institutions
           default: []
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
           title: Markets
+          default: []
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
           default: []
         tags:
           items:
@@ -993,24 +999,20 @@ components:
       title: OAISearchChunksResponse
     OAISearchDocsRequest:
       properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
         query:
           type: string
           title: Query
+        mode:
+          allOf:
+            - $ref: '#/components/schemas/OAISearchMode'
+          default: smart
+        sort:
+          allOf:
+            - $ref: '#/components/schemas/OAISearchSort'
+          default: smart          
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
-          type: array
-        markets:
-          items:
-            $ref: '#/components/schemas/OAIMarket'
           type: array
         institutions:
           items:
@@ -1018,6 +1020,10 @@ components:
           type: array
           title: Institutions
           default: []
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
         symbols:
           items:
             type: string
@@ -1030,20 +1036,20 @@ components:
           type: array
           title: Tags
           default: []
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
         start_date:
           type: string
           title: Start Date
         end_date:
           type: string
           title: End Date
-        mode:
-          allOf:
-            - $ref: '#/components/schemas/OAISearchMode'
-          default: smart
-        sort:
-          allOf:
-            - $ref: '#/components/schemas/OAISearchSort'
-          default: smart
       type: object
       required:
         - query
@@ -1119,6 +1125,20 @@ components:
       title: ErrorResponse      
     OAIDocsRequest:
       properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+        institutions:
+          items:
+            type: string
+          type: array
+          title: Institutions
+          default: []          
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
         symbols:
           items:
             type: string
@@ -1131,20 +1151,6 @@ components:
           type: array
           title: Tags
           default: []
-        categories:
-          items:
-            $ref: '#/components/schemas/OAIDocCategory'
-          type: array
-        markets:
-          items:
-            $ref: '#/components/schemas/OAIMarket'
-          type: array
-        institutions:
-          items:
-            type: string
-          type: array
-          title: Institutions
-          default: []          
         page_num:
           type: integer
           title: Page Num
@@ -1163,14 +1169,6 @@ components:
       title: OAIDocsRequest      
     OAIDocsSymbolsRequest:
       properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
@@ -1179,31 +1177,31 @@ components:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
         start_date:
           type: string
           title: Start Date
         end_date:
           type: string
           title: End Date
-        symbols:
-          items:
-            type: string
-          type: array
-          title: Symbols
       type: object
       required:
         - symbols
       title: OAIDocsSymbolsRequest
     OAIDocsTagsRequest:
       properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
@@ -1212,17 +1210,25 @@ components:
           items:
             $ref: '#/components/schemas/OAIMarket'
           type: array
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
         start_date:
           type: string
           title: Start Date
         end_date:
           type: string
           title: End Date
-        tags:
-          items:
-            type: string
-          type: array
-          title: Tags
       type: object
       required:
         - tags
