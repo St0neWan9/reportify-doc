@@ -13,24 +13,24 @@ openapi: 'POST /v1/docs'
 
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
+| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
+| institutions       | array          | 机构数组，例如 `["Morgan Stanley", "JPMorgan"]`。                   |
+| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
+| markets       | array          | 市场区域数组，例如 `["us", "cn"]`。                   |
 | symbols       | array          | 股票代码数组，例如 `["AAPL", "TSLA"]`。                   |
 | tags           | dict   | 标签数组。                                                        |
 | &nbsp;&nbsp;key| str    | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
 | &nbsp;&nbsp;value| array | 标签内容数组。                                                      |
-| markets       | array          | 市场区域数组，例如 `["us", "cn"]`。                   |
-| institutions       | array          | 机构数组，例如 `["Morgan Stanley", "JPMorgan"]`。                   |
-| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
-| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
+| page_num       | int    | 当前页码，默认值为 `1`。                                   |
+| page_size      | int    | 每页条目数，默认值为 `10`。                                   |
 | start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
 | end_date       | str    | 结束日期，格式为 `YYYY-MM-DD`。                             |
-| page           | int    | 当前页码，默认值为 `1`。                                   |
-| page_num       | int    | 每页显示的条目数，默认值为 `10`。                           |
 
 ### 响应参数
 | 参数名            | 类型    | 描述                                                           |
 |----------------|-------|--------------------------------------------------------------|
-| page           | int   | 当前页码。                                                        |
-| page_num       | int   | 每页条目数。                                                       |
+| page_num       | int   | 当前页码。                                                        |
+| page_size      | int   | 每页条目数。                                                       |
 | total_page     | int   | 总页数。                                                         |
 | total_num      | int   | 总条目数。                                                        |
 | docs           | array | 文档数组，每个文档包含以下字段：                                             |
