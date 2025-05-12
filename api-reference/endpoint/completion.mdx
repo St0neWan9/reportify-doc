@@ -16,9 +16,9 @@ openapi: 'POST /v1/chat/completion'
 | query        | str          | 问题或查询内容。                        |
 | doc_ids      | array[str]   | 指定文档 ID 列表，可选，默认为空数组。   |
 | mode         | str          | 响应模式，支持 `concise`, `comprehensive`, `deepresearch`。 |
+| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
 | market       | str          | 市场区域，默认包括所有市场。可选值有 `sz`, `sh`, `hk`, `us`。                                      |
 | symbol       | str          | 股票代码筛选，如 `SH:000001`，`HK:00700`，`US:AAPL`。                                                       |
-| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
 | tags         | dict         | 标签数组。                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;key | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
 | &nbsp;&nbsp;&nbsp;&nbsp;value| array | 标签内容数组。                                                      |
