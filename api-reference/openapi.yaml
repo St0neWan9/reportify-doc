@@ -629,6 +629,12 @@ components:
           type: array
           title: Categories
           default: []
+        institutions:
+          items:
+            type: string
+          type: array
+          title: Institutions
+          default: []
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
