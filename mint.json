@@ -47,6 +47,7 @@
         {
           "group": "文档列表",
           "pages": [
+            "api-reference/endpoint/docs",
             "api-reference/endpoint/docs_tag",
             "api-reference/endpoint/docs_symbol"
           ]

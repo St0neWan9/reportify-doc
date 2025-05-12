@@ -1,0 +1,131 @@
+---
+title: 'Docs'
+openapi: 'POST /v1/docs'
+---
+
+## 根据条件获取文档
+
+**URL**: `/v1/docs`  
+**方法**: `POST`  
+**描述**: 根据指定条件获取相关文档。
+
+### 请求参数
+
+| 参数名       | 类型         | 描述                                                      |
+|--------------|--------------|-----------------------------------------------------------|
+| symbols       | array          | 股票代码数组，例如 `["AAPL", "TSLA"]`。                   |
+| tags           | dict   | 标签数组。                                                        |
+| &nbsp;&nbsp;key| str    | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;value| array | 标签内容数组。                                                      |
+| markets       | array          | 市场区域数组，例如 `["us", "cn"]`。                   |
+| institutions       | array          | 机构数组，例如 `["Morgan Stanley", "JPMorgan"]`。                   |
+| language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
+| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
+| start_date     | str    | 开始日期，格式为 `YYYY-MM-DD`。                             |
+| end_date       | str    | 结束日期，格式为 `YYYY-MM-DD`。                             |
+| page           | int    | 当前页码，默认值为 `1`。                                   |
+| page_num       | int    | 每页显示的条目数，默认值为 `10`。                           |
+
+### 响应参数
+| 参数名            | 类型    | 描述                                                           |
+|----------------|-------|--------------------------------------------------------------|
+| page           | int   | 当前页码。                                                        |
+| page_num       | int   | 每页条目数。                                                       |
+| total_page     | int   | 总页数。                                                         |
+| total_num      | int   | 总条目数。                                                        |
+| docs           | array | 文档数组，每个文档包含以下字段：                                             |
+| &nbsp;&nbsp;id           | str   | 文档唯一 ID。                                                     |
+| &nbsp;&nbsp;title        | str   | 文档标题。                                                        |
+| &nbsp;&nbsp;url          | str   | 文档网页链接。                                                      |
+| &nbsp;&nbsp;file_url     | str   | 文档文件链接。                                                      |
+| &nbsp;&nbsp;media_url    | str   | 媒体文件链接（如有）。                                                  |
+| &nbsp;&nbsp;institution  | str   | 发布机构。                                                        |
+| &nbsp;&nbsp;author       | str   | 作者。                                                          |
+| &nbsp;&nbsp;published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
+| &nbsp;&nbsp;category     | str   | 文档类别（`filings`, `transcripts`, `reports`, `news`, `files`）。 |
+| &nbsp;&nbsp;market       | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
+| &nbsp;&nbsp;symbol       | str   | 股票代码。                                                        |
+| &nbsp;&nbsp;company_name | str   | 公司名称。                                                        |
+| &nbsp;&nbsp;logo         | str   | 公司 Logo 链接。                                                  |
+| &nbsp;&nbsp;summary      | str   | 文档摘要。*暂未支持*                                                        |
+| &nbsp;&nbsp;tags         | dict  | 标签数组。                                                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 标签内容数组。                                                      |
+| &nbsp;&nbsp;metadatas    | dict  | 元数据数组，包含以下字段：                                                |
+| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `period`, `entities`）。                               |
+| &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 元数据内容数组。                                                     |
+
+
+### 请求示例
+**cURL**
+```bash
+curl -X POST "https://api.reportify.cn/v1/docs/tags" \
+-H "Authorization: Bearer 447460****09c9" \
+-H "Content-Type: application/json" \
+-d '{"tags": ["AI", "Chips"], 
+"language": "english", 
+"categories": ["filings", "transcripts"], 
+"start_date": "2024-01-01", 
+"end_date": "2024-12-31", 
+"page": 1, 
+"page_num": 10}'
+```
+
+**Python 示例**
+```python
+import requests
+
+url = "https://api.reportify.cn/v1/docs/tags"
+headers = {
+    "Authorization": "Bearer 447460****09c9",
+    "Content-Type": "application/json"
+}
+data = {  
+    "tags": ["AI", "Chips"],
+    "language": "english",
+    "categories": ["filings", "transcripts"],
+    "start_date": "2024-01-01",
+    "end_date": "2024-12-31",
+    "page": 1,
+    "page_num": 10
+}
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+### 响应示例
+```json
+{
+  "page": 1,
+  "page_num": 10,
+  "total_page": 5,
+  "total_num": 50,
+  "docs": [
+    {
+      "id": "1046895208953942016",
+      "title": "Apple Q4 Earnings Report",
+      "url": "https://reportify.cn/filings/1046895208953942016",
+      "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+      "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+      "institution": "Morgan Stanley",
+      "author": "Jane Doe",
+      "published_at": "2023-12-31T00:00:00.000Z",
+      "category": "reports",
+      "type": "research_report_company",
+      "market": "us",
+      "symbol": "AAPL",
+      "company_name": "Apple Inc.",
+      "logo": "https://files.reportify.cn/logo/AAPL.svg",
+      "summary": "This report covers Apple's earnings in Q4 2023...",
+      "tags": {
+        "key": "industry",
+        "value": ["AI", "Chips"]
+      },
+      "metadatas": {
+        "key": "period",
+        "value": ["Q4 2023"]
+      }
+    }
+  ]
+}
+```
