@@ -51,7 +51,7 @@ openapi: 'POST /v1/docs'
 | &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
 | &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 标签内容数组。                                                      |
 | &nbsp;&nbsp;metadatas    | dict  | 元数据数组，包含以下字段：                                                |
-| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `period`, `entities`）。                               |
+| &nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `periods`, `entities`）。                               |
 | &nbsp;&nbsp;&nbsp;&nbsp;value      | array | 元数据内容数组。                                                     |
 
 
@@ -121,7 +121,7 @@ print(response.json())
         "value": ["AI", "Chips"]
       },
       "metadatas": {
-        "key": "period",
+        "key": "periods",
         "value": ["Q4 2023"]
       }
     }

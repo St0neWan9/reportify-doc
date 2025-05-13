@@ -1291,7 +1291,7 @@ components:
           title: Meta Datas
           description: document metadata, contains period and entities
           example:
-            period: 2023Q4
+            periods: 2023Q4
             entities:
               - companyA
               - companyB

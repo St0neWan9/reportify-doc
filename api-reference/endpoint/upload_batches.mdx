@@ -17,7 +17,7 @@ openapi: 'POST /v1/docs/upload/batches'
 | &nbsp;&nbsp;name      | str   | 文档名称。                          |
 | &nbsp;&nbsp;path      | str   | 文档的文件路径。                       |
 | &nbsp;&nbsp;metadatas | dict  | 元数据字典，包含以下字段：                  |
-| &nbsp;&nbsp;&nbsp;&nbsp;key     | str   | 元数据类型（如 `period`, `entities`）。 |
+| &nbsp;&nbsp;&nbsp;&nbsp;key     | str   | 元数据类型（如 `periods`, `entities`）。 |
 | &nbsp;&nbsp;&nbsp;&nbsp;value   | array | 元数据内容数组。                       |
 
 ### 响应参数
@@ -41,7 +41,7 @@ curl -X POST https://api.reportify.cn/v1/docs/upload/batches \
             "name": "Tesla AI Report",
             "path": "/path/to/tesla_report.pdf",
             "metadatas": {
-              "period": "Q4 2023",
+              "periods": "Q4 2023",
               "entities": [
                 "Tesla Inc.",
                 "TSLA"
@@ -52,7 +52,7 @@ curl -X POST https://api.reportify.cn/v1/docs/upload/batches \
             "name": "Apple Financials",
             "path": "/path/to/apple_financials.pdf",
             "metadatas": {
-              "period": "Q4 2023",
+              "periods": "Q4 2023",
               "entities": [
                 "Tesla Inc.",
                 "TSLA"
@@ -79,7 +79,7 @@ payload = {
             "name": "Tesla AI Report",
             "path": "/path/to/tesla_report.pdf",
             "metadatas": {
-              "period": "Q4 2023",
+              "periods": "Q4 2023",
               "entities": [
                 "Tesla Inc.",
                 "TSLA"
@@ -90,7 +90,7 @@ payload = {
             "name": "Apple Financials",
             "path": "/path/to/apple_financials.pdf",
             "metadatas": {
-              "period": "Q4 2023",
+              "periods": "Q4 2023",
               "entities": [
                 "Tesla Inc.",
                 "TSLA"
