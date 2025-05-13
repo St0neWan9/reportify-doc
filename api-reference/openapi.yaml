@@ -774,9 +774,6 @@ components:
         company_name:
           type: string
           title: Company Name
-        logo:
-          type: string
-          title: Logo
         tags:
           additionalProperties:
             items: {}
@@ -860,9 +857,6 @@ components:
         company_name:
           type: string
           title: Company Name
-        logo:
-          type: string
-          title: Logo
         tags:
           additionalProperties:
             items: {}
