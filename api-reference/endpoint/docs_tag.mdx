@@ -13,7 +13,7 @@ openapi: 'POST /v1/docs/tags'
 
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
-| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `filings`，`transcripts`，`reports`，`news`，`files`。 |
+| categories     | array  | 文档类别（默认不包含 `files`），可选值有 `financials`，`transcripts`，`reports`，`filings`，`news`, `socials`，`files`。 |
 | language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
 | tags       | array          | 标签数组，例如 `["AI", "Chips"]`。                   |
 | page_num       | int    | 当前页码，默认值为 `1`。                                   |
@@ -37,7 +37,7 @@ openapi: 'POST /v1/docs/tags'
 | &nbsp;&nbsp;institution  | str   | 发布机构。                                                        |
 | &nbsp;&nbsp;author       | str   | 作者。                                                          |
 | &nbsp;&nbsp;published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
-| &nbsp;&nbsp;category     | str   | 文档类别（`filings`, `transcripts`, `reports`, `news`, `files`）。 |
+| &nbsp;&nbsp;category     | str   | 文档类别（`financials`, `transcripts`, `reports`, `filings`, `news`, `socials`, `files`）。 |
 | &nbsp;&nbsp;market       | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
 | &nbsp;&nbsp;symbol       | str   | 股票代码。                                                        |
 | &nbsp;&nbsp;company_name | str   | 公司名称。                                                        |
@@ -59,7 +59,7 @@ curl -X POST "https://api.reportify.cn/v1/docs/tags" \
 -H "Content-Type: application/json" \
 -d '{"tags": ["AI", "Chips"], 
 "language": "english", 
-"categories": ["filings", "transcripts"], 
+"categories": ["financials", "transcripts"], 
 "start_date": "2024-01-01", 
 "end_date": "2024-12-31", 
 "page": 1, 
@@ -78,7 +78,7 @@ headers = {
 data = {  
     "tags": ["AI", "Chips"],
     "language": "english",
-    "categories": ["filings", "transcripts"],
+    "categories": ["financials", "transcripts"],
     "start_date": "2024-01-01",
     "end_date": "2024-12-31",
     "page": 1,
@@ -99,7 +99,7 @@ print(response.json())
     {
       "id": "1046895208953942016",
       "title": "Apple Q4 Earnings Report",
-      "url": "https://reportify.cn/filings/1046895208953942016",
+      "url": "https://reportify.cn/financials/1046895208953942016",
       "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
       "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
       "institution": "Morgan Stanley",

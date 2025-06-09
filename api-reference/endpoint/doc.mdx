@@ -27,7 +27,7 @@ openapi: 'GET /v1/docs/{doc_id}'
 | &nbsp;&nbsp;institution    | str   | 发布机构。                                                        |
 | &nbsp;&nbsp;author         | str   | 作者。                                                          |
 | &nbsp;&nbsp;published_date | str   | 发布时间，格式为 `YYYY-MM-DD`。                                       |
-| &nbsp;&nbsp;category       | str   | 文档类别（`filings`, `transcripts`, `reports`, `news`, `files`）。 |
+| &nbsp;&nbsp;category       | str   | 文档类别（`financials`, `transcripts`, `reports`, `filings`, `news`, `socials`, `files`）。 |
 | &nbsp;&nbsp;market         | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
 | &nbsp;&nbsp;symbol         | str   | 股票代码。                                                        |
 | &nbsp;&nbsp;company_name   | str   | 公司名称。                                                        |
@@ -74,7 +74,7 @@ print(response.json())
   "doc": {
     "id": "1046895208953942016",
     "title": "AI in Finance Report",
-    "url": "https://reportify.cn/filings/1046895208953942016",
+    "url": "https://reportify.cn/financials/1046895208953942016",
     "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
     "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
     "institution": "Morgan Stanley",

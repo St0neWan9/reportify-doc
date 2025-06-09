@@ -814,10 +814,12 @@ components:
     OAIDocCategory:
       type: string
       enum:
-        - filings
+        - financials
         - transcripts
         - reports
+        - filings
         - news
+        - socials
         - files
       title: OAIDocCategory
       description: An enumeration.
