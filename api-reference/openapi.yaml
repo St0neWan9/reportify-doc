@@ -943,6 +943,12 @@ components:
           type: array
           title: Doc Ids
           default: []
+        folder_ids:
+          items:
+            type: string
+          type: array
+          title: Folder Ids
+          default: []
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
@@ -1012,6 +1018,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/OAISearchSort'
           default: smart          
+        folder_ids:
+          items:
+            type: string
+          type: array
+          title: Folder Ids
+          default: []
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'
@@ -1127,6 +1139,12 @@ components:
       title: ErrorResponse      
     OAIDocsRequest:
       properties:
+        folder_ids:
+          items:
+            type: string
+          type: array
+          title: Folder Ids
+          default: []
         categories:
           items:
             $ref: '#/components/schemas/OAIDocCategory'

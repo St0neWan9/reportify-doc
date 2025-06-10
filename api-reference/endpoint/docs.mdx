@@ -13,6 +13,7 @@ openapi: 'POST /v1/docs'
 
 | 参数名       | 类型         | 描述                                                      |
 |--------------|--------------|-----------------------------------------------------------|
+| folder_ids   | array[str]   | 指定的文件夹 ID 列表，如 `["2046915273103380480", "2046522679340961792"]`。                  |
 | categories     | array  | 文档类别（默认不包含 `files`），可选值有 `financials`，`transcripts`，`reports`，`filings`，`news`, `socials`，`files`。 |
 | institutions       | array          | 机构数组，例如 `["Morgan Stanley", "JPMorgan"]`。                   |
 | language       | str    | 搜索语言，支持值为 `all`，`chinese`，`english`。*暂未支持*            |
