@@ -39,41 +39,51 @@
         {
           "group": "搜索和问答",
           "pages": [
-            "api-reference/endpoint/search",
-            "api-reference/endpoint/search_chunks",
-            "api-reference/endpoint/completion"
+            "api-reference/search/search",
+            "api-reference/search/search_chunks",
+            "api-reference/search/completion"
           ]
         },
         {
           "group": "文档列表",
           "pages": [
-            "api-reference/endpoint/docs",
-            "api-reference/endpoint/docs_tag",
-            "api-reference/endpoint/docs_symbol"
+            "api-reference/docs/docs",
+            "api-reference/docs/docs_tag",
+            "api-reference/docs/docs_symbol"
           ]
         },
         {
           "group": "文档内容与总结",
           "pages": [
-            "api-reference/endpoint/doc",
-            "api-reference/endpoint/doc_summary"
+            "api-reference/docs/doc",
+            "api-reference/docs/doc_summary"
           ]
         },
         {
           "group": "文档上传与删除",
           "pages": [
-            "api-reference/endpoint/docs_folder_create",
-            "api-reference/endpoint/docs_folder_delete",
-            "api-reference/endpoint/docs_upload",
-            "api-reference/endpoint/docs_upload_async",
-            "api-reference/endpoint/docs_upload_status",
-            "api-reference/endpoint/docs_delete"
+            "api-reference/files/folder_create",
+            "api-reference/files/folder_delete",
+            "api-reference/files/docs_upload",
+            "api-reference/files/docs_upload_async",
+            "api-reference/files/docs_upload_status",
+            "api-reference/files/docs_delete"
+          ]
+        },
+        {
+          "group": "账号关注",
+          "pages": [
+            "api-reference/channels/channels_search",
+            "api-reference/channels/channels_followings",
+            "api-reference/channels/channels_followings_docs",
+            "api-reference/channels/channels_follow",
+            "api-reference/channels/channels_unfollow"
           ]
         },
         {
           "group": "概念列表",
           "pages": [
-            "api-reference/endpoint/concepts_latest"
+            "api-reference/concepts/concepts_latest"
           ]
         }
       ]
