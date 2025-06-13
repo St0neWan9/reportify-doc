@@ -33,7 +33,7 @@ openapi: 'POST /v1/docs'
 | page_num       | int   | 当前页码。                                                        |
 | page_size      | int   | 每页条目数。                                                       |
 | total_page     | int   | 总页数。                                                         |
-| total_num      | int   | 总条目数。                                                        |
+| total_count      | int   | 总条目数。                                                        |
 | docs           | array | 文档数组，每个文档包含以下字段：                                             |
 | &nbsp;&nbsp;id           | str   | 文档唯一 ID。                                                     |
 | &nbsp;&nbsp;title        | str   | 文档标题。                                                        |
@@ -99,7 +99,7 @@ print(response.json())
   "page": 1,
   "page_num": 10,
   "total_page": 5,
-  "total_num": 50,
+  "total_count": 50,
   "docs": [
     {
       "id": "1046895208953942016",

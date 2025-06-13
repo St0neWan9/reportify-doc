@@ -8,3 +8,23 @@ openapi: 'GET /v1/channels/followings'
 **URL**: `/v1/channels/followings`  
 **方法**: `GET`  
 **描述**: 关注账号列表
+
+### 请求参数
+| 参数名         | 类型   | 描述                                                      |
+|----------------|--------|-----------------------------------------------------------|
+| page_num       | int    | 当前页码，默认值为 `1`。                                   |
+| page_size      | int    | 每页条目数，默认值为 `10`。                                   |
+
+### 响应参数
+| 参数名            | 类型    | 描述                                                           |
+|----------------|-------|--------------------------------------------------------------|
+| page_num       | int   | 当前页码。                                                        |
+| page_size      | int   | 每页条目数。                                                       |
+| total_page     | int   | 总页数。                                                         |
+| total_count    | int   | 总条目数。                                                        |
+| channels       | array | 文档数组，每个文档包含以下字段：                                             |
+| &nbsp;&nbsp;id           | str   | 账号唯一 ID。                                                     |
+| &nbsp;&nbsp;name        | str   | 账号名称。                                                        |
+| &nbsp;&nbsp;avatar_url       | str   | 账号头像。                                                        |
+| &nbsp;&nbsp;description  | str   | 账号描述。                                                        |
+| &nbsp;&nbsp;following  | bool   | 账号关注状态。                                                     |
