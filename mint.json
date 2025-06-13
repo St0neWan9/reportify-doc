@@ -62,8 +62,8 @@
         {
           "group": "文档上传与删除",
           "pages": [
-            "api-reference/files/folder_create",
-            "api-reference/files/folder_delete",
+            "api-reference/files/docs_folder_create",
+            "api-reference/files/docs_folder_delete",
             "api-reference/files/docs_upload",
             "api-reference/files/docs_upload_async",
             "api-reference/files/docs_upload_status",
