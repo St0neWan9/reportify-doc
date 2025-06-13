@@ -469,7 +469,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OAISearchSocialsRequest'
+              $ref: '#/components/schemas/OAISearchChannelRequest'
         required: true
       responses:
         '200':
@@ -477,7 +477,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAISearchSocialsPagination'
+                $ref: '#/components/schemas/OAISearchChannelPagination'
         '422':
           description: Validation Error
           content:
@@ -514,7 +514,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAISearchSocialsPagination'
+                $ref: '#/components/schemas/OAISearchChannelPagination'
         '422':
           description: Validation Error
           content:
@@ -545,7 +545,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAISocialResponse'
+                $ref: '#/components/schemas/OAIChannelResponse'
         '422':
           description: Validation Error
           content:
@@ -555,12 +555,12 @@ paths:
       security:
       - BearerAuth: []
   /v1/channels/{channel_id}/unfollow:
-    post:
+    delete:
       tags:
       - openapi-channels
       summary: Unfollow Channel
       description: Unfollow a specific channel by ID
-      operationId: unfollow_channel_reportify_api_v1_channels__channel_id__unfollow_post
+      operationId: unfollow_channel_reportify_api_v1_channels__channel_id__unfollow_delete
       parameters:
       - description: Channel ID
         required: true
@@ -604,7 +604,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OAISocialDocPagination'
+                $ref: '#/components/schemas/OAIChannelDocPagination'
         '422':
           description: Validation Error
           content:
@@ -693,6 +693,63 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    OAIChannelDocPagination:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          default: 0
+        total_page:
+          type: integer
+          title: Total Page
+          default: 0
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        docs:
+          items:
+            $ref: '#/components/schemas/OAIDoc'
+          type: array
+          title: Docs
+          description: List of doc responses.
+      type: object
+      title: OAIChannelDocPagination
+    OAIChannelResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: channel ID
+        name:
+          type: string
+          title: Name
+          description: channel name
+        description:
+          type: string
+          title: Description
+          description: channel description
+          nullable: true
+        avatar_url:
+          type: string
+          title: Avatar Url
+          description: channel avatar
+          nullable: true
+        follow:
+          type: boolean
+          title: Follow
+          description: follow flag
+          default: false
+          nullable: true
+      type: object
+      required:
+      - id
+      - name
+      title: OAIChannelResponse
     OAIChatCompletionRequest:
       properties:
         query:
@@ -1380,6 +1437,52 @@ components:
       - us
       title: OAIMarket
       description: An enumeration.
+    OAISearchChannelPagination:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          default: 0
+        total_page:
+          type: integer
+          title: Total Page
+          default: 0
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        channels:
+          items:
+            $ref: '#/components/schemas/OAIChannelResponse'
+          type: array
+          title: Channels
+          description: List of channel responses.
+      type: object
+      required:
+      - channels
+      title: OAISearchChannelPagination
+    OAISearchChannelRequest:
+      properties:
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        query:
+          type: string
+          title: Query
+          description: Query string or url
+      type: object
+      required:
+      - query
+      title: OAISearchChannelRequest
     OAISearchChunksRequest:
       properties:
         query:
@@ -1507,52 +1610,6 @@ components:
       - keywords
       title: OAISearchMode
       description: An enumeration.
-    OAISearchSocialsPagination:
-      properties:
-        total_count:
-          type: integer
-          title: Total Count
-          default: 0
-        total_page:
-          type: integer
-          title: Total Page
-          default: 0
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
-        channels:
-          items:
-            $ref: '#/components/schemas/OAISocialResponse'
-          type: array
-          title: Channels
-          description: List of social responses.
-      type: object
-      required:
-      - channels
-      title: OAISearchSocialsPagination
-    OAISearchSocialsRequest:
-      properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
-        query:
-          type: string
-          title: Query
-          description: Query string or url
-      type: object
-      required:
-      - query
-      title: OAISearchSocialsRequest
     OAISearchSort:
       type: string
       enum:
@@ -1560,55 +1617,6 @@ components:
       - latest
       title: OAISearchSort
       description: An enumeration.
-    OAISocialDocPagination:
-      properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
-        docs:
-          items:
-            $ref: '#/components/schemas/OAIDoc'
-          type: array
-          title: Docs
-          description: List of social responses.
-      type: object
-      title: OAISocialDocPagination
-    OAISocialResponse:
-      properties:
-        channel_id:
-          type: string
-          title: Channel Id
-          description: channel ID
-        channel_name:
-          type: string
-          title: Channel Name
-          description: channel name
-        description:
-          type: string
-          title: Description
-          description: channel description
-          nullable: true
-        avatar_url:
-          type: string
-          title: Avatar Url
-          description: channel avatar
-          nullable: true
-        follow:
-          type: boolean
-          title: Follow
-          description: follow flag
-          default: false
-          nullable: true
-      type: object
-      required:
-      - channel_id
-      - channel_name
-      title: OAISocialResponse
     OAuthTokenResponse:
       properties:
         access_token:
@@ -1674,7 +1682,7 @@ components:
             type: string
           type: array
           title: Channel Ids
-          description: List of social IDs.
+          description: List of channel IDs.
           nullable: true
       type: object
       required:
