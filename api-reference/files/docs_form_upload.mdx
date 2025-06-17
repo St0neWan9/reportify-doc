@@ -1,0 +1,35 @@
+---
+title: 'Docs Form Upload'
+openapi: 'POST /v1/docs/form-upload'
+---
+
+## 同步上传文档
+
+**URL**: `/v1/docs/form-upload`  
+**方法**: `POST`  
+**Content-Type**: `multipart/form-data` 
+**描述**: 同步上传单篇报告文档至指定文件夹。
+
+### 请求参数
+| 参数名       | 类型    | 描述                         |
+|-----------|-------|--------------------------------|
+| file   | str(file)   | 文件。                        |
+| folder_id   | str   | 目标文件夹 ID。                 |
+| name   | str   | 文档名称。                        |
+| tags   | str  | 标签 (JSON 字符串)。                             |
+| metadatas | str  | 元数据 (JSON 字符串)。              |
+| published_at   | str   | 发布时间，格式为 millisecond timestamp `1712832000000`。 |
+
+tags 和 metadatas 的格式为 JSON 字符串，示例如下：
+```
+'{"tags": "{\"industry\": \"科技\", \"company\": \"特斯拉\"}}'
+'{"metadatas": "{\"periods\": \"Q4 2023\", \"entities\": [\"Tesla Inc.\", \"TSLA\"]}"}'
+```
+
+### 响应参数
+| 参数名 | 类型 | 描述         |
+|--------|------|--------------|
+| id   | str  | 文档唯一 ID   |
+| title  | str  | 文档标题      |
+| original_url | str | 文档URL |
+

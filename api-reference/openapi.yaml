@@ -230,6 +230,34 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       security:
       - BearerAuth: []
+  /v1/docs/form-upload:
+    post:
+      tags:
+      - openapi-files
+      summary: Upload Doc By Form
+      description: Upload files via form
+      operationId: upload_doc_by_form_reportify_api_v1_docs_form_upload_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocsIdResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - BearerAuth: []
   /v1/docs/upload/async:
     post:
       tags:
@@ -632,6 +660,36 @@ components:
       - client_assertion_type
       - client_assertion
       title: Body_create_token_reportify_api_v1_oauth_token_post
+    Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+        folder_id:
+          type: string
+          title: Folder Id
+          description: 文件夹ID，不传则使用默认文件夹
+        name:
+          type: string
+          title: Name
+          description: 文件名称，不传则使用URL中的文件名
+        metadatas:
+          type: string
+          title: Metadatas
+          description: metadatas json 字符串
+        published_at:
+          type: integer
+          title: Published At
+          description: 文档发布时间, 毫秒级时间戳
+        tags:
+          type: string
+          title: Tags
+          description: 文档标签列表, json字符串
+      type: object
+      required:
+      - file
+      title: Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post
     CompanyLabel:
       properties:
         name:
@@ -739,9 +797,9 @@ components:
           title: Avatar Url
           description: channel avatar
           nullable: true
-        follow:
+        following:
           type: boolean
-          title: Follow
+          title: Following
           description: follow flag
           default: false
           nullable: true
