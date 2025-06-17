@@ -669,23 +669,26 @@ components:
         folder_id:
           type: string
           title: Folder Id
-          description: 文件夹ID，不传则使用默认文件夹
+          description: Folder ID, if you do not pass it, use the default folder
         name:
           type: string
           title: Name
-          description: 文件名称，不传则使用URL中的文件名
+          description: File name, if you do not pass it, use the file name in the
+            URL
         metadatas:
           type: string
           title: Metadatas
-          description: metadatas json 字符串
+          description: 'metadatas json string, example: {"period": "2023Q4", "entities":
+            ["companyA", "companyB"]}'
         published_at:
           type: integer
           title: Published At
-          description: 文档发布时间, 毫秒级时间戳
+          description: Document release time, millisecond time stamp
         tags:
           type: string
           title: Tags
-          description: 文档标签列表, json字符串
+          description: 'Document tag list, json string, example: {"key": ["value1",
+            "value2"]}'
       type: object
       required:
       - file
