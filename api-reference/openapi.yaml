@@ -382,7 +382,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/app__open_api__search__schemas__OAISearchDocsRequest'
+              $ref: '#/components/schemas/OAISearchDocsRequest'
         required: true
       responses:
         '200':
@@ -620,12 +620,29 @@ paths:
       summary: Get Channel Docs
       description: Get documents from followed channels
       operationId: get_channel_docs_reportify_api_v1_channels_followings_docs_get
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/app__open_api__channels__schemas__OAISearchDocsRequest'
-        required: true
+      parameters:
+      - description: Channel IDs
+        required: false
+        schema:
+          type: string
+          title: Channel Ids
+          description: Channel IDs
+        name: channel_ids
+        in: query
+      - required: false
+        schema:
+          type: integer
+          title: Page Num
+          default: 1
+        name: page_num
+        in: query
+      - required: false
+        schema:
+          type: integer
+          title: Page Size
+          default: 10
+        name: page_size
+        in: query
       responses:
         '200':
           description: Successful Response
@@ -982,12 +999,6 @@ components:
         url:
           type: string
           title: Url
-        file_url:
-          type: string
-          title: File Url
-        media_url:
-          type: string
-          title: Media Url
         institution:
           type: string
           title: Institution
@@ -1085,12 +1096,6 @@ components:
         url:
           type: string
           title: Url
-        file_url:
-          type: string
-          title: File Url
-        media_url:
-          type: string
-          title: Media Url
         institution:
           type: string
           title: Institution
@@ -1142,6 +1147,12 @@ components:
         channel_name:
           type: string
           title: Channel Name
+        file_url:
+          type: string
+          title: File Url
+        media_url:
+          type: string
+          title: Media Url
         chunks:
           items:
             $ref: '#/components/schemas/OAIChunk'
@@ -1207,6 +1218,14 @@ components:
       title: OAIDocsIdResponse
     OAIDocsListRequest:
       properties:
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -1637,6 +1656,87 @@ components:
           default: []
       type: object
       title: OAISearchChunksResponse
+    OAISearchDocsRequest:
+      properties:
+        query:
+          type: string
+          title: Query
+        folder_ids:
+          items:
+            type: string
+          type: array
+          title: Folder Ids
+          default: []
+        categories:
+          items:
+            $ref: '#/components/schemas/OAIDocCategory'
+          type: array
+          default:
+          - filings
+          - transcripts
+          - reports
+          - news
+          - announcements
+          - social_media
+        markets:
+          items:
+            $ref: '#/components/schemas/OAIMarket'
+          type: array
+          default: []
+        institutions:
+          items:
+            type: string
+          type: array
+          title: Institutions
+          default: []
+        symbols:
+          items:
+            type: string
+          type: array
+          title: Symbols
+          default: []
+        tags:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Tags
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+        min_score:
+          type: number
+          title: Min Score
+        extended_filters:
+          items:
+            type: object
+          type: array
+          title: Extended Filters
+        page_num:
+          type: integer
+          title: Page Num
+          default: 1
+        page_size:
+          type: integer
+          title: Page Size
+          default: 10
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/OAISearchMode'
+          default: smart
+        sort:
+          allOf:
+          - $ref: '#/components/schemas/OAISearchSort'
+          default: smart
+        should_highlight:
+          type: boolean
+          title: Should Highlight
+          default: false
+      type: object
+      title: OAISearchDocsRequest
     OAISearchDocsResponse:
       properties:
         total_count:
@@ -1728,108 +1828,6 @@ components:
       - msg
       - type
       title: ValidationError
-    app__open_api__channels__schemas__OAISearchDocsRequest:
-      properties:
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
-        channel_ids:
-          items:
-            type: string
-          type: array
-          title: Channel Ids
-          description: List of channel IDs.
-          nullable: true
-      type: object
-      required:
-      - channel_ids
-      title: OAISearchDocsRequest
-    app__open_api__search__schemas__OAISearchDocsRequest:
-      properties:
-        query:
-          type: string
-          title: Query
-        folder_ids:
-          items:
-            type: string
-          type: array
-          title: Folder Ids
-          default: []
-        categories:
-          items:
-            $ref: '#/components/schemas/OAIDocCategory'
-          type: array
-          default:
-          - filings
-          - transcripts
-          - reports
-          - news
-          - announcements
-          - social_media
-        markets:
-          items:
-            $ref: '#/components/schemas/OAIMarket'
-          type: array
-          default: []
-        institutions:
-          items:
-            type: string
-          type: array
-          title: Institutions
-          default: []
-        symbols:
-          items:
-            type: string
-          type: array
-          title: Symbols
-          default: []
-        tags:
-          additionalProperties:
-            items: {}
-            type: array
-          type: object
-          title: Tags
-        start_date:
-          type: string
-          title: Start Date
-        end_date:
-          type: string
-          title: End Date
-        min_score:
-          type: number
-          title: Min Score
-        extended_filters:
-          items:
-            type: object
-          type: array
-          title: Extended Filters
-        page_num:
-          type: integer
-          title: Page Num
-          default: 1
-        page_size:
-          type: integer
-          title: Page Size
-          default: 10
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/OAISearchMode'
-          default: smart
-        sort:
-          allOf:
-          - $ref: '#/components/schemas/OAISearchSort'
-          default: smart
-        should_highlight:
-          type: boolean
-          title: Should Highlight
-          default: false
-      type: object
-      title: OAISearchDocsRequest
   securitySchemes:
     BearerAuth:
       type: http

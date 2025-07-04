@@ -1,17 +1,18 @@
 ---
 title: 'Channel Followings Docs'
-openapi: 'GET /v1/channels/followings/docs'
+openapi: 'POST /v1/channels/{channel_id}/followings/docs'
 ---
 
 ## 获取用户关注的账号的文档列表
 
-**URL**: `/v1/channels/followings/docs`  
-**方法**: `GET`  
+**URL**: `/v1/channels/{channel_id}/followings/docs`  
+**方法**: `POST`  
 **描述**: 关注账号文档列表
 
 ### 请求参数
 | 参数名         | 类型   | 描述                                                      |
 |----------------|--------|-----------------------------------------------------------|
+| channel_id     | str    | 账号唯一 ID。                                              |
 | page_num       | int    | 当前页码，默认值为 `1`。                                   |
 | page_size      | int    | 每页条目数，默认值为 `10`。                                   |
 
@@ -26,8 +27,6 @@ openapi: 'GET /v1/channels/followings/docs'
 | &nbsp;&nbsp;id           | str   | 文档唯一 ID。                                                     |
 | &nbsp;&nbsp;title        | str   | 文档标题。                                                        |
 | &nbsp;&nbsp;url          | str   | 文档网页链接。                                                      |
-| &nbsp;&nbsp;file_url     | str   | 文档文件链接。                                                      |
-| &nbsp;&nbsp;media_url    | str   | 媒体文件链接（如有）。                                                  |
 | &nbsp;&nbsp;institution  | str   | 发布机构。                                                        |
 | &nbsp;&nbsp;author       | str   | 作者。                                                          |
 | &nbsp;&nbsp;published_at | str   | 发布时间，格式为 `YYYY-MM-DDTHH:MM:SS.000Z`。                         |
