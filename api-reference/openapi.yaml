@@ -230,18 +230,18 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       security:
       - BearerAuth: []
-  /v1/docs/form-upload:
+  /v1/docs/upload/form:
     post:
       tags:
       - openapi-files
       summary: Upload Doc By Form
       description: Upload files via form
-      operationId: upload_doc_by_form_reportify_api_v1_docs_form_upload_post
+      operationId: upload_doc_by_form_reportify_api_v1_docs_upload_form_post
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post'
+              $ref: '#/components/schemas/Body_upload_doc_by_form_reportify_api_v1_docs_upload_form_post'
         required: true
       responses:
         '200':
@@ -677,7 +677,7 @@ components:
       - client_assertion_type
       - client_assertion
       title: Body_create_token_reportify_api_v1_oauth_token_post
-    Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post:
+    Body_upload_doc_by_form_reportify_api_v1_docs_upload_form_post:
       properties:
         file:
           type: string
@@ -709,7 +709,7 @@ components:
       type: object
       required:
       - file
-      title: Body_upload_doc_by_form_reportify_api_v1_docs_form_upload_post
+      title: Body_upload_doc_by_form_reportify_api_v1_docs_upload_form_post
     CompanyLabel:
       properties:
         name:
