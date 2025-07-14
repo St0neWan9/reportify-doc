@@ -1076,13 +1076,13 @@ components:
     OAIDocCategory:
       type: string
       enum:
-      - filings
+      - financials
       - transcripts
       - reports
       - news
       - files
-      - announcements
-      - social_media
+      - filings
+      - socials
       title: OAIDocCategory
       description: An enumeration.
     OAIDocContentsResponse:
@@ -1164,6 +1164,80 @@ components:
       - title
       - url
       title: OAIDocContentsResponse
+    OAIDocDetail:
+      properties:
+        doc_id:
+          type: string
+          title: Doc Id
+        title:
+          type: string
+          title: Title
+        url:
+          type: string
+          title: Url
+        institution:
+          type: string
+          title: Institution
+        author:
+          type: string
+          title: Author
+        published_at:
+          type: integer
+          title: Published At
+        category:
+          $ref: '#/components/schemas/OAIDocCategory'
+        market:
+          $ref: '#/components/schemas/OAIMarket'
+        ticker:
+          type: string
+          title: Ticker
+        symbol:
+          type: string
+          title: Symbol
+        company_name:
+          type: string
+          title: Company Name
+        logo:
+          type: string
+          title: Logo
+        companies:
+          items:
+            $ref: '#/components/schemas/CompanyLabel'
+          type: array
+          title: Companies
+        tags:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Tags
+        metadatas:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Metadatas
+        report_type:
+          type: integer
+          title: Report Type
+        channel_id:
+          type: string
+          title: Channel Id
+        channel_name:
+          type: string
+          title: Channel Name
+        file_url:
+          type: string
+          title: File Url
+        media_url:
+          type: string
+          title: Media Url
+      type: object
+      required:
+      - doc_id
+      - title
+      - url
+      title: OAIDocDetail
     OAIDocSummaryResponse:
       properties:
         doc_id:
@@ -1274,12 +1348,12 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-          - filings
+          - financials
           - transcripts
           - reports
           - news
-          - announcements
-          - social_media
+          - filings
+          - socials
       type: object
       title: OAIDocsListRequest
     OAIDocsResponse:
@@ -1323,12 +1397,12 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-          - filings
+          - financials
           - transcripts
           - reports
           - news
-          - announcements
-          - social_media
+          - filings
+          - socials
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -1364,12 +1438,12 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-          - filings
+          - financials
           - transcripts
           - reports
           - news
-          - announcements
-          - social_media
+          - filings
+          - socials
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -1585,12 +1659,12 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-          - filings
+          - financials
           - transcripts
           - reports
           - news
-          - announcements
-          - social_media
+          - filings
+          - socials
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -1672,12 +1746,12 @@ components:
             $ref: '#/components/schemas/OAIDocCategory'
           type: array
           default:
-          - filings
+          - financials
           - transcripts
           - reports
           - news
-          - announcements
-          - social_media
+          - filings
+          - socials
         markets:
           items:
             $ref: '#/components/schemas/OAIMarket'
@@ -1757,7 +1831,9 @@ components:
           default: 10
         docs:
           items:
-            $ref: '#/components/schemas/OAIDoc'
+            anyOf:
+            - $ref: '#/components/schemas/OAIDoc'
+            - $ref: '#/components/schemas/OAIDocDetail'
           type: array
           title: Docs
           default: []
