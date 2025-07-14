@@ -18,12 +18,11 @@ openapi: 'GET /v1/docs/{doc_id}/raw_content'
 ### 响应参数
 | 参数名              | 类型    | 描述                                                           |
 |------------------|-------|--------------------------------------------------------------|
-| doc              | dict  | 文档信息，包含以下字段：                                                 |
-| &nbsp;&nbsp;id             | str   | 文档唯一 ID。                                                     |
-| &nbsp;&nbsp;url            | str   | 文档网页链接。                                                      |
-| &nbsp;&nbsp;file_url       | str   | 文档文件链接。                                                      |
-| &nbsp;&nbsp;media_url      | str   | 媒体文件链接。                                                      |
-| &nbsp;&nbsp;content        | str   | 原始内容。                                                      |
+| doc_id             | str   | 文档唯一 ID。                                                     |
+| url            | str   | 文档网页链接。                                                      |
+| file_url       | str   | 文档文件链接。                                                      |
+| media_url      | str   | 媒体文件链接。                                                      |
+| content        | str   | 原始内容。                                                      |
 
 ### 请求示例
 
@@ -51,13 +50,11 @@ print(response.json())
 ### 响应示例
 ```json
 {
-  "doc": {
-    "id": "1046895208953942016",
-    "url": "https://reportify.cn/financials/1046895208953942016",
-    "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
-    "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
-    "content": "This report provides an overview of AI applications in finance...",
-  }
+  "doc_id": "1046895208953942016",
+  "url": "https://reportify.cn/financials/1046895208953942016",
+  "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+  "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+  "content": "This report provides an overview of AI applications in finance..."
 }
 ```
 

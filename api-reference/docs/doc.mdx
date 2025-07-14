@@ -18,32 +18,31 @@ openapi: 'GET /v1/docs/{doc_id}'
 ### 响应参数
 | 参数名              | 类型    | 描述                                                           |
 |------------------|-------|--------------------------------------------------------------|
-| doc              | dict  | 文档信息，包含以下字段：                                                 |
-| &nbsp;&nbsp;id             | str   | 文档唯一 ID。                                                     |
-| &nbsp;&nbsp;title          | str   | 文档标题。                                                        |
-| &nbsp;&nbsp;url            | str   | 文档网页链接。                                                      |
-| &nbsp;&nbsp;file_url       | str   | 文档文件链接。                                                      |
-| &nbsp;&nbsp;media_url      | str   | 媒体文件链接。                                                      |
-| &nbsp;&nbsp;institution    | str   | 发布机构。                                                        |
-| &nbsp;&nbsp;author         | str   | 作者。                                                          |
-| &nbsp;&nbsp;published_date | str   | 发布时间，格式为 `YYYY-MM-DD`。                                       |
-| &nbsp;&nbsp;category       | str   | 文档类别（`financials`, `transcripts`, `reports`, `filings`, `news`, `socials`, `files`）。 |
-| &nbsp;&nbsp;market         | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
-| &nbsp;&nbsp;symbol         | str   | 股票代码。                                                        |
-| &nbsp;&nbsp;company_name   | str   | 公司名称。                                                        |
-| &nbsp;&nbsp;logo           | str   | 公司 Logo 链接。                                                  |
-| &nbsp;&nbsp;summary        | str   | 文档摘要。                                                        |
-| &nbsp;&nbsp;chunks         | array | 内容块数组，每个块包含以下字段：                                             |
-| &nbsp;&nbsp;&nbsp;&nbsp;type         | str   | 内容类型，可能的值为 `text`，`table`，`image`，`formula`。                 |
-| &nbsp;&nbsp;&nbsp;&nbsp;media_url    | str   | 内容块的媒体文件链接（如果类型为 `table`，`image`，`formula` 时提供图片链接）。         |
-| &nbsp;&nbsp;&nbsp;&nbsp;content      | str   | 内容原始文本（适用于 `text` 或 `table` 类型）。                             |
-| &nbsp;&nbsp;&nbsp;&nbsp;summary      | str   | 解析内容，适用于 `table`，`image`，`formula` 类型。                       |
-| &nbsp;&nbsp;&nbsp;&nbsp;tags         | dict  | 标签字典，包含以下字段：                                                 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value      | array | 标签内容数组。                                                      |
-| &nbsp;&nbsp;&nbsp;&nbsp;metadatas    | dict  | 元数据字典，包含以下字段：                                                |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `periods`, `entities`）。                               |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value      | array | 元数据内容数组。                                                     |
+| doc_id             | str   | 文档唯一 ID。                                                     |
+| title          | str   | 文档标题。                                                        |
+| url            | str   | 文档网页链接。                                                      |
+| file_url       | str   | 文档文件链接。                                                      |
+| media_url      | str   | 媒体文件链接。                                                      |
+| institution    | str   | 发布机构。                                                        |
+| author         | str   | 作者。                                                          |
+| published_date | str   | 发布时间，格式为 `YYYY-MM-DD`。                                       |
+| category       | str   | 文档类别（`financials`, `transcripts`, `reports`, `filings`, `news`, `socials`, `files`）。 |
+| market         | str   | 市场区域（`cn`, `hk`, `us`）。                                      |
+| symbol         | str   | 股票代码。                                                        |
+| company_name   | str   | 公司名称。                                                        |
+| logo           | str   | 公司 Logo 链接。                                                  |
+| summary        | str   | 文档摘要。                                                        |
+| chunks         | array | 内容块数组，每个块包含以下字段：                                             |
+| &nbsp;&nbsp;type         | str   | 内容类型，可能的值为 `text`，`table`，`image`，`formula`。                 |
+| &nbsp;&nbsp;media_url    | str   | 内容块的媒体文件链接（如果类型为 `table`，`image`，`formula` 时提供图片链接）。         |
+| &nbsp;&nbsp;content      | str   | 内容原始文本（适用于 `text` 或 `table` 类型）。                             |
+| &nbsp;&nbsp;summary      | str   | 解析内容，适用于 `table`，`image`，`formula` 类型。                       |
+| &nbsp;&nbsp;tags         | dict  | 标签字典，包含以下字段：                                                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 标签类型（如 `industry`, `company`, `person`, `event`）。            |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value      | array | 标签内容数组。                                                      |
+| &nbsp;&nbsp;metadatas    | dict  | 元数据字典，包含以下字段：                                                |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key        | str   | 元数据类型（如 `periods`, `entities`）。                               |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value      | array | 元数据内容数组。                                                     |
 
 ### 请求示例
 
@@ -71,52 +70,50 @@ print(response.json())
 ### 响应示例
 ```json
 {
-  "doc": {
-    "id": "1046895208953942016",
-    "title": "AI in Finance Report",
-    "url": "https://reportify.cn/financials/1046895208953942016",
-    "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
-    "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
-    "institution": "Morgan Stanley",
-    "author": "Jane Doe",
-    "published_date": "2023-12-31",
-    "category": "reports",
-    "type": "research_report_company",
-    "market": "us",
-    "symbol": "AAPL",
-    "company_name": "Apple Inc.",
-    "logo": "https://files.reportify.cn/logo/AAPL.svg",
-    "summary": "This report provides an overview of AI applications in finance...",
-    "chunks": [
-      {
-        "type": "text",
-        "media_url": "",
-        "content": "AI in finance is transforming the industry...",
-        "summary": ""
-      },
-      {
-        "type": "table",
-        "media_url": "https://files.reportify.cn/media/production/447460783945158/520072899438150/605401659404358/element/4.jpg",
-        "content": "",
-        "summary": "Financial data for AI companies in 2023"
-      }
-    ],
-    "tags": {
-      "industry": [
-        "AI",
-        "EV"
-      ],
-      "company": [
-        "Tesla"
-      ]
+  "doc_id": "1046895208953942016",
+  "title": "AI in Finance Report",
+  "url": "https://reportify.cn/financials/1046895208953942016",
+  "file_url": "https://files.reportify.cn/media/production/TSLA5a08ddfbb97bd6486fff7a3875e7fe28_20241024183012.pdf",
+  "media_url": "https://files.reportify.cn/media/production/s_4728833_9e25b61b62960211e6040eb2b81b352c.mp3",
+  "institution": "Morgan Stanley",
+  "author": "Jane Doe",
+  "published_date": "2023-12-31",
+  "category": "reports",
+  "type": "research_report_company",
+  "market": "us",
+  "symbol": "AAPL",
+  "company_name": "Apple Inc.",
+  "logo": "https://files.reportify.cn/logo/AAPL.svg",
+  "summary": "This report provides an overview of AI applications in finance...",
+  "chunks": [
+    {
+      "type": "text",
+      "media_url": "",
+      "content": "AI in finance is transforming the industry...",
+      "summary": ""
     },
-    "metadatas": {
-      "periods": "Q4 2023",
-      "entities": [
-        "Tesla Inc.",
-        "TSLA"
-      ]
+    {
+      "type": "table",
+      "media_url": "https://files.reportify.cn/media/production/447460783945158/520072899438150/605401659404358/element/4.jpg",
+      "content": "",
+      "summary": "Financial data for AI companies in 2023"
     }
+  ],
+  "tags": {
+    "industry": [
+      "AI",
+      "EV"
+    ],
+    "company": [
+      "Tesla"
+    ]
+  },
+  "metadatas": {
+    "periods": "Q4 2023",
+    "entities": [
+      "Tesla Inc.",
+      "TSLA"
+    ]
   }
 }
 ```
