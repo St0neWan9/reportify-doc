@@ -56,7 +56,8 @@
           "group": "文档内容与总结",
           "pages": [
             "api-reference/docs/doc",
-            "api-reference/docs/doc_summary"
+            "api-reference/docs/doc_summary",
+            "api-reference/docs/doc_raw_content"
           ]
         },
         {
