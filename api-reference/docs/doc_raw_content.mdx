@@ -1,11 +1,11 @@
 ---
 title: 'Doc Raw Content'
-openapi: 'GET /v1/docs/{doc_id}/raw_content'
+openapi: 'GET /v1/docs/{doc_id}/raw-content'
 ---
 
 ## 文档内容
 
-**URL**: `/v1/docs/{doc_id}/raw_content`  
+**URL**: `/v1/docs/{doc_id}/raw-content`  
 **方法**: `GET`  
 **描述**: 获取指定文档的原始内容。
 
@@ -28,7 +28,7 @@ openapi: 'GET /v1/docs/{doc_id}/raw_content'
 
 **cURL**
 ```bash
-curl -X GET https://api.reportify.cn/v1/docs/1046895208953942016/raw_content \
+curl -X GET https://api.reportify.cn/v1/docs/1046895208953942016/raw-content \
 -H "Authorization: Bearer 447460****09c9" \
 -H "Content-Type: application/json"
 ```
@@ -37,7 +37,7 @@ curl -X GET https://api.reportify.cn/v1/docs/1046895208953942016/raw_content \
 ```python
 import requests
 
-url = "https://api.reportify.cn/v1/docs/1046895208953942016/raw_content"
+url = "https://api.reportify.cn/v1/docs/1046895208953942016/raw-content"
 headers = {
     "Authorization": "Bearer 447460****09c9",
     "Content-Type": "application/json"

@@ -145,6 +145,35 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       security:
       - BearerAuth: []
+  /v1/docs/{doc_id}/raw-content:
+    get:
+      tags:
+      - openapi-docs
+      summary: Get Doc Raw Content
+      description: Retrieve raw content of the specified document.
+      operationId: get_doc_raw_content_reportify_api_v1_docs__doc_id__raw_content_get
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Doc Id
+        name: doc_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAIDocContentsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - BearerAuth: []      
   /v1/docs/{doc_id}/summary:
     get:
       tags:
